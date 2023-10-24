@@ -1,0 +1,208 @@
+@use "src/sizes";
+
+.padding-xs {
+  padding: sizes.$xs;
+}
+
+.padding-sm {
+  padding: sizes.$sm;
+}
+
+.padding-md {
+  padding: sizes.$md;
+}
+
+.padding-lg {
+  padding: sizes.$lg;
+}
+
+.padding-xl {
+  padding: sizes.$xl;
+}
+
+.paddingLeft-xs {
+  padding-left: sizes.$xs;
+}
+
+.paddingLeft-sm {
+  padding-left: sizes.$sm;
+}
+
+.paddingLeft-md {
+  padding-left: sizes.$md;
+}
+
+.paddingLeft-lg {
+  padding-left: sizes.$lg;
+}
+
+.paddingLeft-xl {
+  padding-left: sizes.$xl;
+}
+
+.paddingRight-xs {
+  padding-right: sizes.$xs;
+}
+
+.paddingRight-sm {
+  padding-right: sizes.$sm;
+}
+
+.paddingRight-md {
+  padding-right: sizes.$md;
+}
+
+.paddingRight-lg {
+  padding-right: sizes.$lg;
+}
+
+.paddingRight-xl {
+  padding-right: sizes.$xl;
+}
+
+.paddingTop-xs {
+  padding-top: sizes.$xs;
+}
+
+.paddingTop-sm {
+  padding-top: sizes.$sm;
+}
+
+.paddingTop-md {
+  padding-top: sizes.$md;
+}
+
+.paddingTop-lg {
+  padding-top: sizes.$lg;
+}
+
+.paddingTop-xl {
+  padding-top: sizes.$xl;
+}
+
+.paddingBottom-xs {
+  padding-bottom: sizes.$xs;
+}
+
+.paddingBottom-sm {
+  padding-bottom: sizes.$sm;
+}
+
+.paddingBottom-md {
+  padding-bottom: sizes.$md;
+}
+
+.paddingBottom-lg {
+  padding-bottom: sizes.$lg;
+}
+
+.paddingBottom-xl {
+  padding-bottom: sizes.$xl;
+}
+.marginLeft-xs {
+  margin-left: sizes.$xs;
+}
+
+.marginLeft-sm {
+  margin-left: sizes.$sm;
+}
+
+.marginLeft-md {
+  margin-left: sizes.$md;
+}
+
+.marginLeft-lg {
+  margin-left: sizes.$lg;
+}
+
+.marginLeft-xl {
+  margin-left: sizes.$xl;
+}
+
+.marginRight-xs {
+  margin-right: sizes.$xs;
+}
+
+.marginRight-sm {
+  margin-right: sizes.$sm;
+}
+
+.marginRight-md {
+  margin-right: sizes.$md;
+}
+
+.marginRight-lg {
+  margin-right: sizes.$lg;
+}
+
+.marginRight-xl {
+  margin-right: sizes.$xl;
+}
+
+.marginTop-xs {
+  margin-top: sizes.$xs;
+}
+
+.marginTop-sm {
+  margin-top: sizes.$sm;
+}
+
+.marginTop-md {
+  margin-top: sizes.$md;
+}
+
+.marginTop-lg {
+  margin-top: sizes.$lg;
+}
+
+.marginTop-xl {
+  margin-top: sizes.$xl;
+}
+
+.marginBottom-xs {
+  margin-bottom: sizes.$xs;
+}
+
+.marginBottom-sm {
+  margin-bottom: sizes.$sm;
+}
+
+.marginBottom-md {
+  margin-bottom: sizes.$md;
+}
+
+.marginBottom-lg {
+  margin-bottom: sizes.$lg;
+}
+
+.marginBottom-xl {
+  margin-bottom: sizes.$xl;
+}
+
+.fontSize-xs {
+  font-size: sizes.$text-xs;
+}
+
+.fontSize-sm {
+  font-size: sizes.$text-sm;
+}
+
+.fontSize-md {
+  font-size: sizes.$text-md;
+}
+
+.fontSize-lg {
+  font-size: sizes.$text-lg;
+}
+
+.fontSize-xl {
+  font-size: sizes.$text-xl;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}

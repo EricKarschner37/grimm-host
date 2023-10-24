@@ -1,0 +1,11 @@
+.page-board_cost {
+  &_container {
+    color: yellow;
+
+    &_clickable {
+      cursor: pointer;
+    }
+
+    border: 1px solid white;
+  }
+}

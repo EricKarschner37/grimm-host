@@ -1,0 +1,21 @@
+.lib_switch-buttons {
+  padding: 6px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: #c0c0c0;
+  }
+
+  &_selected {
+    background-color: blue;
+    color: white;
+    border-color: blue;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+}

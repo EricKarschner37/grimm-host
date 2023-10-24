@@ -1,0 +1,9 @@
+@use "src/colors";
+@use "src/sizes";
+
+.page-board_category {
+  &_container {
+    font-weight: bold;
+    border: 2px solid white;
+  }
+}

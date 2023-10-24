@@ -1,0 +1,12 @@
+@use "src/colors";
+@use "src/sizes";
+
+.common_square {
+  text-align: center;
+  padding: sizes.$sm sizes.$md;
+
+  background-color: colors.$jeopardy-blue;
+  cursor: default;
+  color: white;
+  font-size: sizes.$text-lg;
+}
