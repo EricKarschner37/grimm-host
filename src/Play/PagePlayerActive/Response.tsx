@@ -24,7 +24,7 @@ export const Response = ({
   if (submittedResponse !== undefined) {
     return (
       <span>
-        <Text isInline text={`Your response:: $${submittedResponse}`} />
+        <Text isInline text={`Your response: ${submittedResponse}`} />
         <Button
           marginLeft="md"
           onClick={() => setSubmittedResponse(undefined)}
