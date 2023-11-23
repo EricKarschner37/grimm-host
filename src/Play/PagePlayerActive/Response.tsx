@@ -40,11 +40,7 @@ export const Response = ({
         e.preventDefault();
       }}
     >
-      <Input
-        hint="Response"
-        value={response}
-        onChange={(value) => validate(value) && setResponse(value)}
-      />
+      <Input hint="Response" value={response} onChange={setResponse} />
       <Button
         label="Submit"
         marginLeft="md"
