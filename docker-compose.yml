@@ -1,0 +1,5 @@
+services:
+  grimm-host:
+    build: .
+    ports:
+      - "8080:8080"
