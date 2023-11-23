@@ -1,4 +1,5 @@
 import { Button } from "lib/Button/Button";
+import { Input } from "lib/Input/Input";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -32,11 +33,15 @@ export const BoardTab = () => {
   };
 
   return (
-    <>
-      <input
-        onChange={(e) => handleGameNumInputChange(e.target.value)}
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <Input
+        onChange={handleGameNumInputChange}
         value={gameNumInput}
-        placeholder="J! Archive Game ID"
+        hint="J! Archive Game ID"
       />
       <Button
         size="sm"
@@ -44,6 +49,6 @@ export const BoardTab = () => {
         marginLeft="sm"
         onClick={launchGameCallback}
       />
-    </>
+    </form>
   );
 };

@@ -11,13 +11,7 @@ const BLOCK = "page-board_cost";
 
 export const Cost = ({ cost, onClick }: CostProps) => {
   return (
-    <Square
-      className={classNames([
-        `${BLOCK}_container`,
-        Boolean(onClick) ? `${BLOCK}_container_clickable` : undefined,
-      ])}
-      onClick={onClick}
-    >
+    <Square className={classNames([`${BLOCK}_container`])} onClick={onClick}>
       ${cost}
     </Square>
   );

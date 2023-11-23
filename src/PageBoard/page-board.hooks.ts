@@ -1,8 +1,19 @@
-import { RevealMessage } from "PageBoard/page-board.types";
+import {
+  BOARD_MESSAGE_STRING,
+  RESPONSE_MESSAGE_STRING,
+  START_DOUBLE_MESSAGE_STRING,
+  START_FINAL_MESSAGE_STRING,
+} from "PageBoard/page-board.constants";
+import {
+  makeRemoveMessage,
+  makeRevealMessage,
+  makeSetPlayerBalanceMessage,
+} from "PageBoard/page-board.utils";
 import { isStateMessageShape } from "common/types/game-state.type-guards";
 import { GameState, StateMessage } from "common/types/game-state.types";
 import { getGameStateFromStateMessage } from "common/types/get-game-state";
 import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
+import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
 import React from "react";
 
 export interface UseBoardSocketArgs {
@@ -13,6 +24,11 @@ export interface UseBoardSocketArgs {
 export interface BoardSocketWrapper extends SocketWrapper {
   setPlayerBalance: (name: string, balance: number) => void;
   reveal: (row: number, col: number) => void;
+  goToResponse: () => void;
+  startDouble: () => void;
+  startFinal: () => void;
+  showBoard: () => void;
+  removePlayer: (player: string) => void;
 }
 
 const deserializeBoardMessage = (message: string): StateMessage | null => {
@@ -23,20 +39,10 @@ const deserializeBoardMessage = (message: string): StateMessage | null => {
   return null;
 };
 
-const makeRevealMessage = (row: number, col: number): string => {
-  const message: RevealMessage = {
-    request: "reveal",
-    row,
-    col,
-  };
-
-  return JSON.stringify(message);
-};
-
 export const useBoardSocket = ({
   gameIndex,
   setGameState,
-}: UseBoardSocketArgs) => {
+}: UseBoardSocketArgs): BoardSocketWrapper => {
   const socket = useSocket({
     path: `/api/ws/${gameIndex}/board`,
     onMessage: (e: MessageEvent) => {
@@ -52,22 +58,56 @@ export const useBoardSocket = ({
     enabled: Boolean(gameIndex),
   });
 
-  const reveal = React.useCallback(
-    (row: number, col: number) => {
-      socket.send(makeRevealMessage(row, col));
-    },
-    [socket]
+  const reveal = useStableCallback((row: number, col: number) => {
+    socket.send(makeRevealMessage(row, col));
+  });
+
+  const setPlayerBalance = useStableCallback(
+    (name: string, balance: number) => {
+      socket.send(makeSetPlayerBalanceMessage(name, balance));
+    }
   );
 
-  const setPlayerBalance = React.useCallback(
-    (name: string, balance: string) => {
-      console.log("unimplimented: setPlayerBalance");
-    },
-    []
-  );
+  const removePlayer = useStableCallback((player: string) => {
+    socket.send(makeRemoveMessage(player));
+  });
+
+  const goToResponse = useStableCallback(() => {
+    socket.send(RESPONSE_MESSAGE_STRING);
+  });
+
+  const startDouble = useStableCallback(() => {
+    socket.send(START_DOUBLE_MESSAGE_STRING);
+  });
+
+  const startFinal = useStableCallback(() => {
+    socket.send(START_FINAL_MESSAGE_STRING);
+  });
+
+  const showBoard = useStableCallback(() => {
+    socket.send(BOARD_MESSAGE_STRING);
+  });
 
   return React.useMemo(
-    () => ({ ...socket, reveal, setPlayerBalance }),
-    [reveal, setPlayerBalance, socket]
+    () => ({
+      ...socket,
+      reveal,
+      setPlayerBalance,
+      removePlayer,
+      goToResponse,
+      startDouble,
+      startFinal,
+      showBoard,
+    }),
+    [
+      goToResponse,
+      removePlayer,
+      reveal,
+      setPlayerBalance,
+      showBoard,
+      socket,
+      startDouble,
+      startFinal,
+    ]
   );
 };

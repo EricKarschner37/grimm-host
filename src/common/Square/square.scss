@@ -9,4 +9,9 @@
   cursor: default;
   color: white;
   font-size: sizes.$text-lg;
+  box-sizing: border-box;
+
+  &_clickable {
+    cursor: pointer;
+  }
 }

@@ -49,7 +49,6 @@ export const useSocket = ({
     if (!innerEnabled) {
       return;
     }
-    console.trace();
     const newSocket = new WebSocket(`${BASE_URL}${path}`);
     newSocket.onopen = (e) => {
       messageQueueRef.current.forEach((message) => newSocket.send(message));
@@ -57,30 +56,35 @@ export const useSocket = ({
       if (DEBUG) {
         console.debug("use-socket: onopen: ", e);
       }
-      onOpen?.(e);
+      if (onOpen) {
+        onOpen(e);
+      }
     };
+
     newSocket.onclose = (e) => {
       if (DEBUG) {
         console.debug("use-socket: onclose: ", e);
       }
       if (onClose) {
-        onClose?.(e);
+        onClose(e);
       }
     };
+
     newSocket.onerror = (e) => {
       if (DEBUG) {
         console.debug("use-socket: onerror: ", e);
       }
       if (onError) {
-        newSocket.onerror = onError;
+        onError(e);
       }
     };
+
     newSocket.onmessage = (e) => {
       if (DEBUG) {
         console.debug("use-socket: onmessage: ", e);
       }
       if (onMessage) {
-        newSocket.onmessage = onMessage;
+        onMessage(e);
       }
     };
 

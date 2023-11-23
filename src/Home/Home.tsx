@@ -3,6 +3,7 @@ import { PlayTab } from "Home/PlayTab/PlayTab";
 import { Button } from "lib/Button/Button";
 import { NavLink } from "react-router-dom";
 import { BoardTab } from "Home/BoardTab";
+import { HostTab } from "Home/HostTab";
 
 type Tab = "play" | "host" | "board";
 
@@ -19,7 +20,7 @@ const tabs = [
 export const Home = ({ tab }: HomeProps) => {
   const tabContent: Record<Tab, JSX.Element> = {
     play: <PlayTab />,
-    host: <></>,
+    host: <HostTab />,
     board: <BoardTab />,
   };
 

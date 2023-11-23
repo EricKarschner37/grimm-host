@@ -1,0 +1,15 @@
+@use "src/sizes";
+
+.common_client-categories {
+  &_grid {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    padding: sizes.$md;
+
+    * {
+      border: 1px solid white;
+      padding: sizes.$xl;
+      box-sizing: border-box;
+    }
+  }
+}

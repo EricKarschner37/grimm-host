@@ -3,10 +3,12 @@ import { useGetGames } from "lib/utils/hooks/use-get-games";
 
 export const PlayTab = () => {
   const { data: gamesResults } = useGetGames();
-  const games = gamesResults?.map((result) => ({
-    num: result.game_idx,
-    created: new Date(result.created),
-  }));
+  const games = gamesResults
+    ?.map((result) => ({
+      num: result.game_idx,
+      created: new Date(result.created),
+    }))
+    .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());
 
   return (
     <>

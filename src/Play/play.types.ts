@@ -16,4 +16,14 @@ export interface BuzzMessage {
   request: "buzz";
 }
 
+export interface WagerMessage {
+  request: "wager";
+  amount: number;
+}
+
+export interface PlayerResponseMessage {
+  request: "response";
+  response: string;
+}
+
 export type PlayerMessageTx = RegisterMessage;

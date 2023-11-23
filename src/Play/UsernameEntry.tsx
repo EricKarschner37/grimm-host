@@ -8,9 +8,9 @@ export const UsernameEntry = () => {
   const [, setSearchParams] = useSearchParams();
 
   return (
-    <>
+    <form onSubmit={(e) => e.preventDefault()}>
       <input onChange={(e) => setUsername(e.target.value)} value={username} />
       <Button label="connect" onClick={() => setSearchParams({ username })} />
-    </>
+    </form>
   );
 };

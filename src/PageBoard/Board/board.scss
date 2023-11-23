@@ -2,17 +2,31 @@
 
 .page-board_board {
   &_container {
+    width: 100%;
+    height: 80%;
+
+    box-sizing: border-box;
+
+    padding-left: sizes.$xl;
+    padding-right: sizes.$xl;
+    padding-top: sizes.$lg;
+    padding-bottom: sizes.$lg;
+    text-align: center;
+  }
+
+  &_grid {
     display: grid;
 
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
 
-    margin-left: sizes.$xl;
-    margin-right: sizes.$xl;
-    margin-top: sizes.$lg;
-    margin-bottom: sizes.$lg;
-
     width: 100%;
     height: 100%;
+
+    margin: auto;
+
+    * {
+      border: 1px solid white;
+    }
   }
 }

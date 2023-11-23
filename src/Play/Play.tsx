@@ -1,4 +1,4 @@
-import { ActivePlayerScreen } from "Play/ActivePlayerScreen/ActivePlayerScreen";
+import { PagePlayerActive } from "Play/PagePlayerActive/PagePlayerActive";
 import { UsernameEntry } from "Play/UsernameEntry";
 import { Navigate, useParams, useSearchParams } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export const Play = () => {
 
   return (
     <>
-      <ActivePlayerScreen username={username} gameIndex={indexNumber} />
+      <PagePlayerActive username={username} gameIndex={indexNumber} />
     </>
   );
 };

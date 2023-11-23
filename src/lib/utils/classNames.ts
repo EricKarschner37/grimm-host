@@ -1,5 +1,4 @@
 import { MarginProps, PaddingProps, Size } from "lib/types";
-import { match } from "ts-pattern";
 
 export const classNames = (names: (string | null | undefined)[]) =>
   names
@@ -18,7 +17,9 @@ export const getHelperClassNames = ({
   marginRight,
   marginBottom,
   fontSize,
-}: PaddingProps & MarginProps & { fontSize?: Size }): string[] => {
+  isInline,
+}: PaddingProps &
+  MarginProps & { fontSize?: Size; isInline?: boolean }): string[] => {
   const result: string[] = [];
   if (margin) {
     result.push(`margin-${margin}`);
@@ -62,6 +63,10 @@ export const getHelperClassNames = ({
 
   if (fontSize) {
     result.push(`fontSize-${fontSize}`);
+  }
+
+  if (isInline) {
+    result.push("displayInline");
   }
 
   return result;

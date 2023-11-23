@@ -7,6 +7,7 @@ import { match } from "ts-pattern";
 import React from "react";
 import { Square } from "common/Square/Square";
 import { Cost } from "PageBoard/Cost/Cost";
+import { Clue } from "PageBoard/Clue/Clue";
 
 export interface BoardProps {
   gameState: GameState;
@@ -37,7 +38,7 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
 
     rows.push(categories);
 
-    for (let i = 1; i < 5; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       const cols = [];
       const cost = match(gameState.round)
         .with("single", () => 200 * (i + 1))
@@ -69,11 +70,72 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
 export const Board = ({ gameState, socket }: BoardProps) => {
   const board = useBoard({ gameState, socket });
 
+  let mainContent: JSX.Element | null = null;
+
   if (gameState.type === "board") {
-    return (
-      <div className={`${BLOCK}_container`}>
+    mainContent = (
+      <div className={`${BLOCK}_grid`}>
         {board.flatMap((row) => row.map((square) => square.element))}
       </div>
     );
   }
+
+  if (gameState.type === "clue") {
+    mainContent = (
+      <Clue
+        onClick={socket.goToResponse}
+        cost={String(gameState.cost)}
+        clue={gameState.clue}
+      />
+    );
+  }
+
+  if (gameState.type === "response") {
+    mainContent = (
+      <Clue
+        onClick={socket.showBoard}
+        cost={String(gameState.cost)}
+        clue={gameState.clue}
+        response={gameState.response}
+      />
+    );
+  }
+
+  if (gameState.type === "daily-double") {
+    mainContent = (
+      <Clue
+        onClick={() =>
+          window.confirm("Skip daily double?") && socket.goToResponse()
+        }
+        cost={String("???")}
+        clue={"Daily Double!"}
+      />
+    );
+  }
+
+  if (gameState.type === "final-wager") {
+    mainContent = (
+      <Clue
+        onClick={() =>
+          window.confirm("Skip final jeopardy?") && socket.goToResponse()
+        }
+        cost={String("???")}
+        clue={`Category: ${gameState.category}`}
+      />
+    );
+  }
+
+  if (gameState.type === "final-clue") {
+    mainContent = (
+      <Clue
+        onClick={() =>
+          window.confirm("Skip final jeopardy?") && socket.goToResponse()
+        }
+        cost={String("???")}
+        clue={gameState.clue}
+      />
+    );
+  }
+
+  return <div className={`${BLOCK}_container`}>{mainContent}</div>;
 };

@@ -7,8 +7,14 @@
   border-radius: 4px;
 
   color: black;
+  stroke: black;
   background-color: white;
   border-color: colors.$default;
+  user-select: none;
+
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
 
   &:hover {
     background-color: colors.$default;
@@ -18,12 +24,14 @@
     border-color: colors.$primary;
     background-color: colors.$primary;
     color: white;
+    stroke: white;
   }
 
   &_variant-secondary {
     border-color: colors.$secondary;
     background-color: colors.$secondary;
     color: white;
+    stroke: white;
 
     &:hover {
       background-color: colors.$secondary-dark;
@@ -34,11 +42,13 @@
     border-color: colors.$error;
     background-color: colors.$error;
     color: white;
+    stroke: white;
   }
 
   &_variant-success {
     border-color: colors.$success;
     background-color: colors.$success;
     color: white;
+    stroke: white;
   }
 }

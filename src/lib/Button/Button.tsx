@@ -5,12 +5,15 @@ import {
   getHelperClassNames,
   getSizeDown,
 } from "lib/utils/classNames";
+import { Icon } from "lib/icons/icons-types";
+import { Flex } from "lib/Flex";
 
 export interface ButtonProps extends PaddingProps, MarginProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   label: string;
   variant?: Variant;
   size?: Size;
+  icon?: Icon;
 }
 
 const BLOCK = "lib_button";
@@ -28,6 +31,7 @@ export const Button = ({
   marginBottom,
   onClick,
   label,
+  icon,
   size = "md",
   variant = "default",
 }: ButtonProps) => {
@@ -53,7 +57,10 @@ export const Button = ({
       ])}
       onClick={onClick}
     >
-      {label}
+      <Flex direction="row" gap="2px" align="center" justify="center">
+        {label}
+        {icon}
+      </Flex>
     </button>
   );
 };

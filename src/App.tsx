@@ -4,10 +4,12 @@ import { Home } from "Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Play } from "Play/Play";
 import { PageBoard } from "PageBoard/PageBoard";
+import { PageHost } from "PageHost/PageHost";
 
 const router = createBrowserRouter([
   { path: "/play/:gameIndex", element: <Play /> },
   { path: "/board/:gameIndex", element: <PageBoard /> },
+  { path: "/host/:gameIndex", element: <PageHost /> },
   {
     path: "/",
     element: <Home tab="play" />,

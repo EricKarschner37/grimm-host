@@ -1,0 +1,19 @@
+@use "src/sizes";
+
+.page-play_clue {
+  &_container {
+    display: grid;
+    font-size: sizes.$text-md;
+
+    text-align: center;
+    grid-template-rows: 1fr repeat(2, 3fr);
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+  }
+
+  &_cost {
+    color: yellow;
+  }
+}

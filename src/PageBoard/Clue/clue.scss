@@ -1,13 +1,13 @@
 .page-board_clue {
   &_container {
+    display: grid;
+
     text-align: center;
-    padding: sizes.$sm sizes.$md;
+    grid-template-rows: 1fr repeat(2, 3fr);
+    align-items: center;
+  }
 
-    background-color: colors.$jeopardy-blue;
-    cursor: default;
-    color: white;
-    font-size: sizes.$text-md;
-
-    border: 1px solid white;
+  &_cost {
+    color: yellow;
   }
 }
