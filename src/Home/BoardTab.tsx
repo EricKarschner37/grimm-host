@@ -20,6 +20,7 @@ export const BoardTab = () => {
   };
 
   const launchGameCallback = () => {
+    console.log(`${BASE_URL}/api/start/${gameNumInput}`);
     fetch(`${BASE_URL}/api/start/${gameNumInput}`, {
       method: "POST",
     })

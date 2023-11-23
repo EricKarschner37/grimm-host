@@ -4,8 +4,9 @@ export const SmallSquare = (props: SquareProps) => (
   <div
     style={{
       display: "block",
-      height: "300px",
-      width: "600px",
+      height: "40%",
+      width: "80%",
+      maxWidth: "600px",
       margin: "16px auto",
     }}
   >
