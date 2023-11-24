@@ -4,8 +4,6 @@
   &_button {
     visibility: hidden;
     height: 10px;
-    stroke: black;
-    fill: darkgrey;
     position: absolute;
     top: 0;
     left: calc(100% - 8px);
@@ -13,9 +11,26 @@
     height: fit-content;
     cursor: pointer;
 
+    .lib_popover-button_base {
+      fill: darkgrey;
+      stroke: darkgrey;
+    }
+
+    .lib_popover-button_fore {
+      fill: black;
+      stroke: #777;
+    }
+
     &-error {
-      stroke: white;
-      fill: colors.$error;
+      .lib_popover-button_base {
+        fill: colors.$error;
+        stroke: colors.$error;
+      }
+
+      .lib_popover-button_fore {
+        fill: white;
+        stroke: white;
+      }
     }
 
     &-success {
@@ -31,6 +46,12 @@
     &-secondary {
       stroke: white;
       fill: colors.$secondary;
+    }
+
+    * {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 

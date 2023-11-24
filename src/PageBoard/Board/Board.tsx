@@ -83,6 +83,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
   if (gameState.type === "clue") {
     mainContent = (
       <Clue
+        category={gameState.category}
         onClick={socket.goToResponse}
         cost={String(gameState.cost)}
         clue={gameState.clue}
@@ -93,6 +94,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
   if (gameState.type === "response") {
     mainContent = (
       <Clue
+        category={gameState.category}
         onClick={socket.showBoard}
         cost={String(gameState.cost)}
         clue={gameState.clue}
@@ -104,6 +106,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
   if (gameState.type === "daily-double") {
     mainContent = (
       <Clue
+        category={gameState.category}
         onClick={() =>
           window.confirm("Skip daily double?") && socket.goToResponse()
         }
@@ -116,11 +119,12 @@ export const Board = ({ gameState, socket }: BoardProps) => {
   if (gameState.type === "final-wager") {
     mainContent = (
       <Clue
+        category={gameState.category}
         onClick={() =>
           window.confirm("Skip final jeopardy?") && socket.goToResponse()
         }
         cost={String("???")}
-        clue={`Category: ${gameState.category}`}
+        clue="Final Jeopardy!"
       />
     );
   }
@@ -128,6 +132,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
   if (gameState.type === "final-clue") {
     mainContent = (
       <Clue
+        category={gameState.category}
         onClick={() =>
           window.confirm("Skip final jeopardy?") && socket.goToResponse()
         }

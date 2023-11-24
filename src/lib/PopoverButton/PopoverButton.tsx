@@ -4,6 +4,7 @@ import React from "react";
 import { XIcon } from "lib/icons/XIcon";
 import { Icon } from "lib/icons/icons-types";
 import { classNames } from "lib/utils/classNames";
+import { CircleIcon } from "lib/icons/CircleIcon";
 
 const BLOCK = "lib_popover-button";
 
@@ -28,7 +29,8 @@ export const PopoverButton = ({
         ])}
         onClick={onClick}
       >
-        {icon}
+        <div className={`${BLOCK}_base`}>{CircleIcon}</div>
+        <div className={`${BLOCK}_fore`}>{icon}</div>
       </button>
       {children}
     </span>

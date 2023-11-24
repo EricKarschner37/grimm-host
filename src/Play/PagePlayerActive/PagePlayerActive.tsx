@@ -45,6 +45,7 @@ const PagePlayerActiveContent = ({
     mainContent = (
       <SmallSquare>
         <Clue
+          category={gameState.category}
           cost={String(gameState.cost)}
           clue={gameState.clue}
           response={gameState.response}
@@ -56,7 +57,11 @@ const PagePlayerActiveContent = ({
   if (gameState.type === "clue" || gameState.type === "final-clue") {
     mainContent = (
       <SmallSquare>
-        <Clue cost={String(gameState.cost)} clue={gameState.clue} />
+        <Clue
+          category={gameState.category}
+          cost={String(gameState.cost)}
+          clue={gameState.clue}
+        />
       </SmallSquare>
     );
   }
@@ -81,17 +86,30 @@ const PagePlayerActiveContent = ({
   if (gameState.type === "daily-double") {
     mainContent = (
       <SmallSquare>
-        <Clue cost={"???"} clue={"Daily Double!"} />
+        <Clue
+          category={gameState.category}
+          cost={"???"}
+          clue={"Daily Double!"}
+        />
       </SmallSquare>
     );
 
     if (gameState.activePlayer === username) {
-      actionTray.push(<Wager socket={socket} gameState={gameState} />);
+      actionTray.push(
+        <Wager socket={socket} gameState={gameState} balance={balance} />
+      );
     }
   }
 
   if (gameState.type === "final-wager") {
-    actionTray.push(<Wager socket={socket} gameState={gameState} />);
+    mainContent = (
+      <SmallSquare>
+        <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
+      </SmallSquare>
+    );
+    actionTray.push(
+      <Wager balance={balance} socket={socket} gameState={gameState} />
+    );
   }
 
   if (gameState.type === "final-clue") {

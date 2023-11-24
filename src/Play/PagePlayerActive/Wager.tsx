@@ -5,16 +5,35 @@ import { Input } from "lib/Input/Input";
 import { Text } from "lib/Text";
 import React from "react";
 
-const validate = (value: string) => {
-  return value === "-" || !Number.isNaN(Number.parseInt(value));
+const validateInProgress = (value: string) => {
+  return value === "-" || value === "" || !Number.isNaN(Number.parseInt(value));
+};
+
+const validateWager = (
+  wager: number,
+  gameState: GameState,
+  balance: number
+) => {
+  const max = Math.max(
+    balance,
+    gameState.round === "final"
+      ? 3000
+      : gameState.round === "double"
+      ? 2000
+      : 1000
+  );
+
+  return !Number.isNaN(wager) && wager <= max && wager >= 5;
 };
 
 export const Wager = ({
   socket,
   gameState,
+  balance,
 }: {
   socket: PlayerSocketWrapper;
   gameState: GameState;
+  balance: number;
 }) => {
   const [wagerText, setWagerText] = React.useState("");
   const [submittedWager, setSubmittedWager] = React.useState<
@@ -43,14 +62,14 @@ export const Wager = ({
       <Input
         hint="Wager"
         value={wagerText}
-        onChange={(value) => validate(value) && setWagerText(value)}
+        onChange={(value) => validateInProgress(value) && setWagerText(value)}
       />
       <Button
         label="Submit"
         marginLeft="md"
         onClick={() => {
           const wager = Number.parseInt(wagerText);
-          if (isNaN(wager)) return;
+          if (!validateWager(wager, gameState, balance)) return;
           socket.wager(wager);
           setSubmittedWager(wager);
         }}

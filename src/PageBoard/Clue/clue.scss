@@ -3,7 +3,7 @@
     display: grid;
 
     text-align: center;
-    grid-template-rows: 1fr repeat(2, 3fr);
+    grid-template-rows: repeat(2, 1fr) repeat(2, 3fr);
     align-items: center;
   }
 

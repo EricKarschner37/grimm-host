@@ -36,6 +36,7 @@ export const PageHostContent = ({
     mainContent = (
       <SmallSquare>
         <Clue
+          category={gameState.category}
           cost={String(gameState.cost)}
           clue={gameState.clue}
           response={gameState.response}
@@ -75,6 +76,14 @@ export const PageHostContent = ({
 
   if (gameState.type === "daily-double") {
     actionTray.push(<PlayerSelector gameState={gameState} socket={socket} />);
+  }
+
+  if (gameState.type === "final-wager") {
+    mainContent = (
+      <SmallSquare>
+        <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
+      </SmallSquare>
+    );
   }
 
   return (
