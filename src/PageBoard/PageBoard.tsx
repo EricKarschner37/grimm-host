@@ -6,8 +6,7 @@ import { Button } from "lib/Button/Button";
 import { Flex } from "lib/Flex";
 import { Panel } from "lib/Panel/Panel";
 import { Suspender } from "lib/Suspender";
-import { Text } from "lib/Text";
-import { RightArrow } from "lib/icons/RightArrow";
+import { RightArrowIcon } from "lib/icons/RightArrowIcon";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 
@@ -65,7 +64,7 @@ const PageBoardContent = ({ gameState, socket }: BoardProps) => {
                 : socket.startFinal
             }
             label="Skip Round"
-            icon={RightArrow}
+            icon={RightArrowIcon}
           />
         )}
       </Flex>

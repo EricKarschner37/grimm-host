@@ -1,0 +1,47 @@
+@use "src/colors.scss";
+
+.lib_popover-button {
+  &_button {
+    visibility: hidden;
+    height: 10px;
+    stroke: black;
+    fill: darkgrey;
+    position: absolute;
+    top: 0;
+    left: calc(100% - 8px);
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+
+    &-error {
+      stroke: white;
+      fill: colors.$error;
+    }
+
+    &-success {
+      stroke: white;
+      fill: colors.$success;
+    }
+
+    &-primary {
+      stroke: white;
+      fill: colors.$primary;
+    }
+
+    &-secondary {
+      stroke: white;
+      fill: colors.$secondary;
+    }
+  }
+
+  &_container {
+    position: relative;
+    width: fit-content;
+
+    &:hover {
+      * {
+        visibility: visible;
+      }
+    }
+  }
+}

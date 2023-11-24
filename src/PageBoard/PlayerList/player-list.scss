@@ -1,0 +1,21 @@
+@use "src/sizes";
+
+.page-board_player-list {
+  &_container {
+    display: grid;
+    grid-template-columns: auto fit-content(10px);
+    gap: sizes.$md;
+  }
+
+  &_name {
+    width: fit-content;
+  }
+
+  &_balance-input {
+    width: 8ch;
+  }
+
+  &_balance {
+    width: 8ch;
+  }
+}
