@@ -5,6 +5,9 @@
     text-align: center;
     grid-template-rows: repeat(2, 1fr) repeat(2, 3fr);
     align-items: center;
+
+    height: 100%;
+    width: 100%;
   }
 
   &_cost {

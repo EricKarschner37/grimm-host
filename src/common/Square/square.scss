@@ -11,6 +11,8 @@
   font-size: sizes.$text-lg;
   box-sizing: border-box;
 
+  overflow: scroll;
+
   &_clickable {
     cursor: pointer;
   }

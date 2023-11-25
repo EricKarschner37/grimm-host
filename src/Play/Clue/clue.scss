@@ -9,7 +9,8 @@
     grid-template-rows: repeat(2, 1fr) repeat(2, 3fr);
     align-items: center;
 
-    height: 100%;
+    height: fit-content;
+    max-height: 60%;
     width: 100%;
   }
 
