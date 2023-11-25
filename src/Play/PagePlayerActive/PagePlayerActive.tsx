@@ -68,6 +68,8 @@ const PagePlayerActiveContent = ({
   if (gameState.type === "clue") {
     if (gameState.buzzedPlayer === username) {
       actionTray.push(<Text size="lg" text="Buzzed in!" />);
+    } else if (gameState.buzzedPlayer) {
+      actionTray.push(<Text text={`${gameState.buzzedPlayer} is buzzed in`} />);
     } else {
       actionTray.push(
         <>

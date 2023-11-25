@@ -1,12 +1,16 @@
 @use "src/colors.scss";
 
 .lib_popover-button {
+  &_fore {
+    width: fit-content;
+    height: fit-content;
+  }
+
   &_button {
     visibility: hidden;
-    height: 10px;
     position: absolute;
-    top: 0;
-    left: calc(100% - 8px);
+    top: -25px;
+    right: 10px;
     width: fit-content;
     height: fit-content;
     cursor: pointer;

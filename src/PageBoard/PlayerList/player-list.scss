@@ -4,7 +4,12 @@
   &_container {
     display: grid;
     grid-template-columns: auto fit-content(10px);
-    gap: sizes.$md;
+    column-gap: sizes.$xl;
+    position: relative;
+    * {
+      margin-top: sizes.$md;
+      margin-bottom: sizes.$sm;
+    }
   }
 
   &_name {
