@@ -1,4 +1,3 @@
-import { Clue } from "Play/Clue/Clue";
 import { Text } from "lib/Text/Text";
 import { PlayerSocketWrapper, usePlayerSocket } from "Play/play.hooks";
 import { GameState } from "common/types/game-state.types";
@@ -8,9 +7,10 @@ import React, { ReactNode } from "react";
 import "./page-player-active.scss";
 import { Flex } from "lib/Flex";
 import { ClientCategories } from "common/ClientCategories/ClientCategories";
-import { SmallSquare } from "common/SmallSquare";
 import { Wager } from "Play/PagePlayerActive/Wager";
 import { Response } from "Play/PagePlayerActive/Response";
+import { Clue } from "PageBoard/Clue/Clue";
+import { FlexItem } from "lib/FlexItem/FlexItem";
 
 export interface PagePlayerActiveProps {
   username: string;
@@ -43,26 +43,22 @@ const PagePlayerActiveContent = ({
 
   if (gameState.type === "response") {
     mainContent = (
-      <SmallSquare>
-        <Clue
-          category={gameState.category}
-          cost={String(gameState.cost)}
-          clue={gameState.clue}
-          response={gameState.response}
-        />
-      </SmallSquare>
+      <Clue
+        category={gameState.category}
+        cost={String(gameState.cost)}
+        clue={gameState.clue}
+        response={gameState.response}
+      />
     );
   }
 
   if (gameState.type === "clue" || gameState.type === "final-clue") {
     mainContent = (
-      <SmallSquare>
-        <Clue
-          category={gameState.category}
-          cost={String(gameState.cost)}
-          clue={gameState.clue}
-        />
-      </SmallSquare>
+      <Clue
+        category={gameState.category}
+        cost={String(gameState.cost)}
+        clue={gameState.clue}
+      />
     );
   }
   if (gameState.type === "clue") {
@@ -87,13 +83,7 @@ const PagePlayerActiveContent = ({
 
   if (gameState.type === "daily-double") {
     mainContent = (
-      <SmallSquare>
-        <Clue
-          category={gameState.category}
-          cost={"???"}
-          clue={"Daily Double!"}
-        />
-      </SmallSquare>
+      <Clue category={gameState.category} cost={"???"} clue={"Daily Double!"} />
     );
 
     if (gameState.activePlayer === username) {
@@ -105,9 +95,7 @@ const PagePlayerActiveContent = ({
 
   if (gameState.type === "final-wager") {
     mainContent = (
-      <SmallSquare>
-        <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
-      </SmallSquare>
+      <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
     );
     actionTray.push(
       <Wager balance={balance} socket={socket} gameState={gameState} />
@@ -139,9 +127,10 @@ const PagePlayerActiveContent = ({
           text={`$${balance}`}
         />
       </Flex>
-      {mainContent}
-      <div style={{ flexGrow: 1 }} />
-      <Flex gap="4px" justify="center" direction="row" marginBottom="lg">
+      <FlexItem className={`${BLOCK}_main-content-container`} basis={0} grow>
+        {mainContent}
+      </FlexItem>
+      <Flex gap="4px" justify="center" direction="row" marginBottom="md">
         {actionTray}
       </Flex>
     </Flex>

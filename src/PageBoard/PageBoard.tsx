@@ -4,11 +4,14 @@ import { useBoardSocket } from "PageBoard/page-board.hooks";
 import { GameState } from "common/types/game-state.types";
 import { Button } from "lib/Button/Button";
 import { Flex } from "lib/Flex";
+import { FlexItem } from "lib/FlexItem/FlexItem";
 import { Panel } from "lib/Panel/Panel";
 import { Suspender } from "lib/Suspender";
 import { RightArrowIcon } from "lib/icons/RightArrowIcon";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
+
+import "./page-board.scss";
 
 const PageBoardRedirector = () => {
   const { gameIndex } = useParams<"gameIndex">();
@@ -19,6 +22,8 @@ const PageBoardRedirector = () => {
 
   return <PageBoard gameIndex={gameIndex} />;
 };
+
+const BLOCK = "page_board";
 
 const PageBoard = ({ gameIndex }: { gameIndex: string }) => {
   const [gameState, setGameState] = React.useState<GameState | null>(null);
@@ -39,36 +44,39 @@ const PageBoard = ({ gameIndex }: { gameIndex: string }) => {
 
 const PageBoardContent = ({ gameState, socket }: BoardProps) => {
   return (
-    <Flex isFullWidth isFullHeight direction="column">
-      <Board gameState={gameState} socket={socket} />
-      <Flex
-        justify="space-evenly"
-        align="center"
-        padding="xl"
-        isFullWidth
-        direction="row"
-        grow
-      >
-        <Panel paddingLeft="md" paddingRight="md">
-          <PlayerList socket={socket} gameState={gameState} />
-        </Panel>
-        {gameState.round !== "final" && (
-          <Button
-            size="sm"
-            variant="secondary"
-            paddingTop="xs"
-            paddingBottom="xs"
-            onClick={
-              gameState.round === "single"
-                ? socket.startDouble
-                : socket.startFinal
-            }
-            label="Skip Round"
-            icon={RightArrowIcon}
-          />
-        )}
+    <div className={`${BLOCK}-container`}>
+      <Flex isFullWidth isFullHeight direction="column">
+        <FlexItem basis={0} grow>
+          <Board gameState={gameState} socket={socket} />
+        </FlexItem>
+        <Flex
+          justify="space-evenly"
+          align="center"
+          padding="xl"
+          isFullWidth
+          direction="row"
+        >
+          <Panel paddingLeft="md" paddingRight="md">
+            <PlayerList socket={socket} gameState={gameState} />
+          </Panel>
+          {gameState.round !== "final" && (
+            <Button
+              size="sm"
+              variant="secondary"
+              paddingTop="xs"
+              paddingBottom="xs"
+              onClick={
+                gameState.round === "single"
+                  ? socket.startDouble
+                  : socket.startFinal
+              }
+              label="Skip Round"
+              icon={RightArrowIcon}
+            />
+          )}
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   );
 };
 

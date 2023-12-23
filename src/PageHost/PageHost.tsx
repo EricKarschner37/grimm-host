@@ -1,8 +1,6 @@
 import { PlayerSelector } from "PageHost/PlayerSelector";
 import { HostSocketWrapper, useHostSocket } from "PageHost/page-host.hooks";
-import { Clue } from "Play/Clue/Clue";
 import { ClientCategories } from "common/ClientCategories/ClientCategories";
-import { SmallSquare } from "common/SmallSquare";
 import { GameState } from "common/types/game-state.types";
 import { Button } from "lib/Button/Button";
 import { Flex } from "lib/Flex";
@@ -11,11 +9,17 @@ import { ToggleSwitch } from "lib/ToggleSwitch/ToggleSwitch";
 import { Text } from "lib/Text";
 import React, { ReactNode } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import { Clue } from "PageBoard/Clue/Clue";
+import { Spacing } from "lib/Spacing/Spacing";
+import { FlexItem } from "lib/FlexItem/FlexItem";
+import "./page-host.scss";
 
 export interface PageHostContentProps {
   gameState: GameState;
   socket: HostSocketWrapper;
 }
+
+const BLOCK = "page_host";
 
 export const PageHostContent = ({
   gameState,
@@ -34,14 +38,12 @@ export const PageHostContent = ({
     gameState.type === "final-clue"
   ) {
     mainContent = (
-      <SmallSquare>
-        <Clue
-          category={gameState.category}
-          cost={String(gameState.cost)}
-          clue={gameState.clue}
-          response={gameState.response}
-        />
-      </SmallSquare>
+      <Clue
+        category={gameState.category}
+        cost={String(gameState.cost)}
+        clue={gameState.clue}
+        response={gameState.response}
+      />
     );
 
     if (gameState.type === "clue") {
@@ -75,21 +77,23 @@ export const PageHostContent = ({
   }
 
   if (gameState.type === "daily-double") {
+    mainContent = (
+      <Clue category={gameState.category} cost={"???"} clue={"Daily Double!"} />
+    );
     actionTray.push(<PlayerSelector gameState={gameState} socket={socket} />);
   }
 
   if (gameState.type === "final-wager") {
     mainContent = (
-      <SmallSquare>
-        <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
-      </SmallSquare>
+      <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
     );
   }
 
   return (
     <Flex isFullHeight isFullWidth direction="column" align="center">
-      {mainContent}
-      <div style={{ flexGrow: 1 }} />
+      <FlexItem basis={0} grow className={`${BLOCK}-main-content-container`}>
+        {mainContent}
+      </FlexItem>
       {gameState.buzzedPlayer && (
         <Text text={`${gameState.buzzedPlayer} is buzzed in`} />
       )}

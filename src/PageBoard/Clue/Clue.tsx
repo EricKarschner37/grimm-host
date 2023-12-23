@@ -1,5 +1,7 @@
 import { Square } from "common/Square/Square";
 import "./clue.scss";
+import { Flex } from "lib/Flex";
+import { FlexItem } from "lib/FlexItem/FlexItem";
 
 export interface ClueProps {
   category: string;
@@ -8,6 +10,7 @@ export interface ClueProps {
   response?: string;
   isActive?: string;
   onClick?: () => void;
+  isFullScreen?: boolean;
 }
 
 const BLOCK = "page-board_clue";
@@ -19,15 +22,25 @@ export const Clue = ({
   response,
   onClick,
   isActive,
+  isFullScreen = false,
 }: ClueProps) => {
   return (
     <Square onClick={onClick}>
-      <div className={`${BLOCK}_container`}>
-        <p>{category}</p>
-        <p className={`${BLOCK}_cost`}>${cost}</p>
+      <Flex
+        padding={isFullScreen ? "xl" : "md"}
+        direction="column"
+        justify="space-between"
+        isFullHeight
+        isFullWidth
+      >
+        <p>
+          {category} - <span className={`${BLOCK}_cost`}>${cost}</span>
+        </p>
         <p>{clue}</p>
-        {response && <p>{response}</p>}
-      </div>
+        <p style={{ visibility: response ? "visible" : "hidden" }}>
+          {response ?? "placeholder response"}
+        </p>
+      </Flex>
     </Square>
   );
 };

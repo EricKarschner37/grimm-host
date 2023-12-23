@@ -87,6 +87,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
         onClick={socket.goToResponse}
         cost={String(gameState.cost)}
         clue={gameState.clue}
+        isFullScreen
       />
     );
   }
@@ -99,6 +100,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
         cost={String(gameState.cost)}
         clue={gameState.clue}
         response={gameState.response}
+        isFullScreen
       />
     );
   }
@@ -142,5 +144,5 @@ export const Board = ({ gameState, socket }: BoardProps) => {
     );
   }
 
-  return <div className={`${BLOCK}_container`}>{mainContent}</div>;
+  return mainContent;
 };

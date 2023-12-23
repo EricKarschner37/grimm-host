@@ -31,8 +31,6 @@ interface FlexProps extends PaddingProps, MarginProps {
   justify?: FlexJustify;
   align?: FlexAlign;
 
-  grow?: number | boolean;
-
   isFullWidth?: boolean;
   isFullHeight?: boolean;
   className?: string;
@@ -53,7 +51,6 @@ export const Flex = ({
   isFullHeight = false,
   className,
   onClick,
-  grow,
   ...rest
 }: React.PropsWithChildren<FlexProps>) => {
   const helperClassNames = getHelperClassNames(rest);
@@ -72,8 +69,6 @@ export const Flex = ({
         flexWrap: wrap,
         justifyContent: justify,
         alignItems: align,
-        flexGrow:
-          grow === false || grow === undefined ? 0 : grow === true ? 1 : grow,
       }}
       onClick={onClick}
     >

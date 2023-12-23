@@ -1,7 +1,7 @@
-import { Flex } from "lib/Flex";
 import { classNames } from "lib/utils/classNames";
 
 import "./square.scss";
+import { Flex } from "lib/Flex";
 
 const BLOCK = "common_square";
 
@@ -13,10 +13,8 @@ export type SquareProps = React.PropsWithChildren<{
 export const Square = ({ children, className, onClick }: SquareProps) => {
   return (
     <Flex
+      direction="column"
       justify="center"
-      isFullWidth
-      isFullHeight
-      align="center"
       className={classNames([
         BLOCK,
         className,

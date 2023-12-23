@@ -1,0 +1,10 @@
+@use "src/sizes";
+
+.page_board {
+  &-container {
+    width: calc(100% - sizes.$md - sizes.$md);
+    height: calc(100% - sizes.$md - sizes.$md);
+
+    margin: sizes.$md;
+  }
+}

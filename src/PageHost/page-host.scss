@@ -1,0 +1,9 @@
+@use "src/sizes";
+
+.page_host {
+  &-main-content-container {
+    overflow: scroll;
+
+    margin: sizes.$md;
+  }
+}

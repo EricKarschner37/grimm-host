@@ -179,6 +179,26 @@
   margin-bottom: sizes.$xl;
 }
 
+.margin-xs {
+  margin: sizes.$xs;
+}
+
+.margin-sm {
+  margin: sizes.$sm;
+}
+
+.margin-md {
+  margin: sizes.$md;
+}
+
+.margin-lg {
+  margin: sizes.$lg;
+}
+
+.margin-xl {
+  margin: sizes.$xl;
+}
+
 .fontSize-xs {
   font-size: sizes.$text-xs;
 }
@@ -201,12 +221,18 @@
 
 .fullWidth {
   width: 100%;
+  max-width: 100%;
 }
 
 .fullHeight {
   height: 100%;
+  max-height: 100%;
 }
 
 .displayInline {
   display: inline;
+}
+
+* {
+  min-height: 0;
 }
