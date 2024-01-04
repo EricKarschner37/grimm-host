@@ -1,6 +1,11 @@
+@use "src/colors";
+
 .lib_panel {
   &_container {
-    border: 1px solid black;
+    border: 2px solid colors.$ui-border;
     border-radius: 4px;
+
+    width: fit-content;
+    height: fit-content;
   }
 }

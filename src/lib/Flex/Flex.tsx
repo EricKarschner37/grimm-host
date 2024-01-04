@@ -47,7 +47,7 @@ export const Flex = ({
   justify,
   align,
   children,
-  isFullWidth = true,
+  isFullWidth = false,
   isFullHeight = false,
   className,
   onClick,

@@ -1,0 +1,25 @@
+@use "src/sizes";
+@use "src/colors";
+
+.lib_tab-list {
+  &_item {
+    text-transform: uppercase;
+    border-color: colors.$ui-border;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    padding: sizes.$sm;
+    cursor: pointer;
+
+    &:first-of-type {
+      border-left-width: 2px;
+    }
+
+    &-active {
+      box-shadow: inset -2px -2px 2px -2px darkgrey;
+
+      svg {
+        fill: colors.$jeopardy-blue;
+      }
+    }
+  }
+}

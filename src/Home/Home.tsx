@@ -1,9 +1,10 @@
 import { Flex } from "lib/Flex";
 import { PlayTab } from "Home/PlayTab/PlayTab";
-import { Button } from "lib/Button/Button";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BoardTab } from "Home/BoardTab";
 import { HostTab } from "Home/HostTab";
+import { TabList } from "lib/TabList/TabList";
+import { Panel } from "lib/Panel/Panel";
 
 type Tab = "play" | "host" | "board";
 
@@ -18,6 +19,8 @@ const tabs = [
 ] as const;
 
 export const Home = ({ tab }: HomeProps) => {
+  const navigate = useNavigate();
+
   const tabContent: Record<Tab, JSX.Element> = {
     play: <PlayTab />,
     host: <HostTab />,
@@ -26,17 +29,14 @@ export const Home = ({ tab }: HomeProps) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Flex gap="8px" direction="row" marginTop="lg" marginLeft="lg">
-        {tabs.map(({ value, label }) => (
-          <NavLink to={`/${value}`}>
-            <Button
-              variant={tab === value ? "secondary" : "default"}
-              label={label}
-            />
-          </NavLink>
-        ))}
-      </Flex>
-      {tabContent[tab]}
+      <Panel>
+        <TabList
+          tabs={tabs}
+          selectedTab={tab}
+          onSelectTab={(newTab) => navigate(`/${newTab}`)}
+        />
+        {tabContent[tab]}
+      </Panel>
     </div>
   );
 };
