@@ -1,4 +1,5 @@
 import { GameListing } from "Home/PlayTab/GameListing/GameListing";
+import { EmptyState } from "lib/EmptyState/EmptyState";
 import { useGetGames } from "lib/utils/hooks/use-get-games";
 
 export const HostTab = () => {
@@ -10,9 +11,9 @@ export const HostTab = () => {
     }))
     .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());
 
-  return (
+  return games ? (
     <>
-      {games?.map((game) => (
+      {games.map((game) => (
         <GameListing
           key={game.num}
           urlPath="/host"
@@ -21,5 +22,7 @@ export const HostTab = () => {
         />
       ))}
     </>
+  ) : (
+    <EmptyState message="There are currently no active games. Try refreshing the page!" />
   );
 };

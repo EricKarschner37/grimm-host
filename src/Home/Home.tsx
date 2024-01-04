@@ -5,6 +5,7 @@ import { BoardTab } from "Home/BoardTab";
 import { HostTab } from "Home/HostTab";
 import { TabList } from "lib/TabList/TabList";
 import { Panel } from "lib/Panel/Panel";
+import { Spacing } from "lib/Spacing/Spacing";
 
 type Tab = "play" | "host" | "board";
 
@@ -28,8 +29,8 @@ export const Home = ({ tab }: HomeProps) => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <Panel>
+    <Spacing margin="md">
+      <Panel isFullWidth>
         <TabList
           tabs={tabs}
           selectedTab={tab}
@@ -37,6 +38,6 @@ export const Home = ({ tab }: HomeProps) => {
         />
         {tabContent[tab]}
       </Panel>
-    </div>
+    </Spacing>
   );
 };

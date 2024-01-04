@@ -47,8 +47,6 @@ export const Flex = ({
   justify,
   align,
   children,
-  isFullWidth = false,
-  isFullHeight = false,
   className,
   onClick,
   ...rest
@@ -56,13 +54,7 @@ export const Flex = ({
   const helperClassNames = getHelperClassNames(rest);
   return (
     <div
-      className={classNames([
-        BLOCK,
-        ...helperClassNames,
-        isFullWidth ? "fullWidth" : "fitWidth",
-        isFullHeight ? "fullHeight" : "fitHeight",
-        className,
-      ])}
+      className={classNames([BLOCK, ...helperClassNames, className])}
       style={{
         gap,
         flexDirection: direction,

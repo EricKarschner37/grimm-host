@@ -24,6 +24,11 @@ export interface MarginProps {
   marginBottom?: Size;
 }
 
+export interface LayoutProps {
+  isFullWidth?: boolean;
+  isFullHeight?: boolean;
+}
+
 export interface DefaultProps extends PaddingProps, MarginProps {
   variant?: Variant;
 }

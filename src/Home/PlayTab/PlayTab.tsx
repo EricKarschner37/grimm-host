@@ -1,4 +1,5 @@
 import { GameListing } from "Home/PlayTab/GameListing/GameListing";
+import { EmptyState } from "lib/EmptyState/EmptyState";
 import { useGetGames } from "lib/utils/hooks/use-get-games";
 
 export const PlayTab = () => {
@@ -12,9 +13,13 @@ export const PlayTab = () => {
 
   return (
     <>
-      {games?.map((game) => (
-        <GameListing key={game.num} num={game.num} created={game.created} />
-      ))}
+      {games ? (
+        games.map((game) => (
+          <GameListing key={game.num} num={game.num} created={game.created} />
+        ))
+      ) : (
+        <EmptyState message="There are currently no active games. Try refreshing the page!" />
+      )}
     </>
   );
 };

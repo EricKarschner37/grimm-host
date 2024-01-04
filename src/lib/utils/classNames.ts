@@ -1,4 +1,4 @@
-import { MarginProps, PaddingProps, Size } from "lib/types";
+import { LayoutProps, MarginProps, PaddingProps, Size } from "lib/types";
 
 export const classNames = (names: (string | null | undefined)[]) =>
   names
@@ -18,8 +18,11 @@ export const getHelperClassNames = ({
   marginBottom,
   fontSize,
   isInline,
+  isFullWidth,
+  isFullHeight,
 }: PaddingProps &
-  MarginProps & { fontSize?: Size; isInline?: boolean }): string[] => {
+  MarginProps &
+  LayoutProps & { fontSize?: Size; isInline?: boolean }): string[] => {
   const result: string[] = [];
   if (margin) {
     result.push(`margin-${margin}`);
@@ -67,6 +70,14 @@ export const getHelperClassNames = ({
 
   if (isInline) {
     result.push("displayInline");
+  }
+
+  if (isFullWidth) {
+    result.push("fullWidth");
+  }
+
+  if (isFullHeight) {
+    result.push("fullHeight");
   }
 
   return result;
