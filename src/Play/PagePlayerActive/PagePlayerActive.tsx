@@ -112,6 +112,7 @@ const PagePlayerActiveContent = ({
         justify="space-between"
         align="center"
         className={`${BLOCK}_header`}
+        isFullWidth
       >
         <Text
           className={`${BLOCK}_header_left`}

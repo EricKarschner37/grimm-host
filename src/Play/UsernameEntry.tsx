@@ -1,4 +1,6 @@
 import { Button } from "lib/Button/Button";
+import { Flex } from "lib/Flex";
+import { Input } from "lib/Input/Input";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -9,8 +11,14 @@ export const UsernameEntry = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <input onChange={(e) => setUsername(e.target.value)} value={username} />
-      <Button label="connect" onClick={() => setSearchParams({ username })} />
+      <Flex marginBottom="md" direction="row" justify="space-evenly">
+        <Input
+          hint="Username"
+          onChange={(value) => setUsername(value)}
+          value={username}
+        />
+        <Button label="connect" onClick={() => setSearchParams({ username })} />
+      </Flex>
     </form>
   );
 };

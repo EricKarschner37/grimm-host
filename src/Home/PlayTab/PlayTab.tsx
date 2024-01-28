@@ -13,7 +13,7 @@ export const PlayTab = () => {
 
   return (
     <>
-      {games ? (
+      {games && games.length > 0 ? (
         games.map((game) => (
           <GameListing key={game.num} num={game.num} created={game.created} />
         ))

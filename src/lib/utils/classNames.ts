@@ -83,7 +83,7 @@ export const getHelperClassNames = ({
   return result;
 };
 
-const sizesInOrder = ["xs", "sm", "md", "lg", "xl"] as const;
+const sizesInOrder = ["none", "xs", "sm", "md", "lg", "xl"] as const;
 
 export const getSizeUp = (size: Size, count: number = 1): Size => {
   const index = sizesInOrder.indexOf(size);

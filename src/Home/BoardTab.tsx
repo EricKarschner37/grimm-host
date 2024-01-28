@@ -1,5 +1,6 @@
 import { Button } from "lib/Button/Button";
 import { Input } from "lib/Input/Input";
+import { Spacing } from "lib/Spacing/Spacing";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,17 +21,22 @@ export const BoardTab = () => {
   };
 
   const launchGameCallback = () => {
-    console.log(`${BASE_URL}/api/start/${gameNumInput}`);
     fetch(`${BASE_URL}/api/start/${gameNumInput}`, {
       method: "POST",
     })
-      .then((data) => data.json())
+      .then((data) => {
+        if (data.ok) {
+          return data.json();
+        } else {
+          throw new Error("Couldn't reach Jeopardy server");
+        }
+      })
       .then((obj) => {
-        console.log(obj.gameIndex);
         if ("gameIndex" in obj) {
           navigate(String(obj.gameIndex));
         }
-      });
+      })
+      .catch((reason) => console.log(reason));
   };
 
   return (
@@ -39,17 +45,19 @@ export const BoardTab = () => {
         e.preventDefault();
       }}
     >
-      <Input
-        onChange={handleGameNumInputChange}
-        value={gameNumInput}
-        hint="J! Archive Game ID"
-      />
-      <Button
-        size="sm"
-        label="Launch"
-        marginLeft="sm"
-        onClick={launchGameCallback}
-      />
+      <Spacing margin="md">
+        <Input
+          onChange={handleGameNumInputChange}
+          value={gameNumInput}
+          hint="J! Archive Game ID"
+        />
+        <Button
+          size="sm"
+          label="Launch"
+          marginLeft="sm"
+          onClick={launchGameCallback}
+        />
+      </Spacing>
     </form>
   );
 };

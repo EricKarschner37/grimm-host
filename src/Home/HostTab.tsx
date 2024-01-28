@@ -11,7 +11,7 @@ export const HostTab = () => {
     }))
     .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());
 
-  return games ? (
+  return games && games.length > 0 ? (
     <>
       {games.map((game) => (
         <GameListing

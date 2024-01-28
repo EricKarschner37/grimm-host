@@ -1,5 +1,9 @@
 @use "src/sizes";
 
+.padding-none {
+  padding: sizes.$none;
+}
+
 .padding-xs {
   padding: sizes.$xs;
 }
@@ -18,6 +22,10 @@
 
 .padding-xl {
   padding: sizes.$xl;
+}
+
+.paddingLeft-none {
+  padding-left: sizes.$none;
 }
 
 .paddingLeft-xs {
@@ -40,6 +48,10 @@
   padding-left: sizes.$xl;
 }
 
+.paddingRight-none {
+  padding-right: sizes.$none;
+}
+
 .paddingRight-xs {
   padding-right: sizes.$xs;
 }
@@ -58,6 +70,10 @@
 
 .paddingRight-xl {
   padding-right: sizes.$xl;
+}
+
+.paddingTop-none {
+  padding-top: sizes.$none;
 }
 
 .paddingTop-xs {
@@ -80,6 +96,10 @@
   padding-top: sizes.$xl;
 }
 
+.paddingBottom-none {
+  padding-bottom: sizes.$none;
+}
+
 .paddingBottom-xs {
   padding-bottom: sizes.$xs;
 }
@@ -96,9 +116,10 @@
   padding-bottom: sizes.$lg;
 }
 
-.paddingBottom-xl {
-  padding-bottom: sizes.$xl;
+.marginLeft-none {
+  margin-left: sizes.$none;
 }
+
 .marginLeft-xs {
   margin-left: sizes.$xs;
 }
@@ -117,6 +138,10 @@
 
 .marginLeft-xl {
   margin-left: sizes.$xl;
+}
+
+.marginRight-none {
+  margin-right: sizes.$none;
 }
 
 .marginRight-xs {
@@ -139,6 +164,10 @@
   margin-right: sizes.$xl;
 }
 
+.marginTop-none {
+  margin-top: sizes.$none;
+}
+
 .marginTop-xs {
   margin-top: sizes.$xs;
 }
@@ -159,6 +188,10 @@
   margin-top: sizes.$xl;
 }
 
+.marginBottom-none {
+  margin-bottom: sizes.$none;
+}
+
 .marginBottom-xs {
   margin-bottom: sizes.$xs;
 }
@@ -177,6 +210,10 @@
 
 .marginBottom-xl {
   margin-bottom: sizes.$xl;
+}
+
+.margin-none {
+  margin: sizes.$none;
 }
 
 .margin-xs {
