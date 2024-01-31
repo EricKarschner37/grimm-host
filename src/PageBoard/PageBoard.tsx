@@ -12,6 +12,8 @@ import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import "./page-board.scss";
+import QRCode from "react-qr-code";
+import { Text } from "lib/Text";
 
 const PageBoardRedirector = () => {
   const { gameIndex } = useParams<"gameIndex">();
@@ -33,16 +35,24 @@ const PageBoard = ({ gameIndex }: { gameIndex: string }) => {
   return (
     <Suspender
       render={PageBoardContent}
-      props={{ gameState, socket }}
+      props={{ gameState, socket, gameIndex: Number.parseInt(gameIndex) }}
       renderEmpty={() => <p>Connecting...</p>}
       shouldRender={(props: {
         gameState: GameState | null;
-      }): props is BoardProps => gameState !== null}
+      }): props is PageBoardContentProps => gameState !== null}
     />
   );
 };
 
-const PageBoardContent = ({ gameState, socket }: BoardProps) => {
+interface PageBoardContentProps extends BoardProps {
+  gameIndex: number;
+}
+
+const PageBoardContent = ({
+  gameState,
+  socket,
+  gameIndex,
+}: PageBoardContentProps) => {
   return (
     <div className={`${BLOCK}-container`}>
       <Flex isFullWidth isFullHeight direction="column">
@@ -59,6 +69,14 @@ const PageBoardContent = ({ gameState, socket }: BoardProps) => {
           <Panel paddingLeft="md" paddingRight="md">
             <PlayerList socket={socket} gameState={gameState} />
           </Panel>
+          <div style={{ textAlign: "center" }}>
+            <QRCode
+              size={128}
+              value={`https://${window.location.host}/play/${gameIndex}`}
+              width={28}
+            />
+            <Text variant="secondary" text="Scan to join!" />
+          </div>
           {gameState.round !== "final" && (
             <Button
               size="sm"
