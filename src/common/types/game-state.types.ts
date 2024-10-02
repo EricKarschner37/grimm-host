@@ -98,6 +98,6 @@ export interface StateMessage {
   clue: string;
   response: string;
   players: Record<string, { name: string; balance: number }>;
-  round: "Single" | "Double" | "Final";
+  round_idx: number;
   clues_shown: number;
 }

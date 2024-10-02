@@ -14,11 +14,10 @@ export const getGameStateFromStateMessage = (
     .exhaustive(),
   categories: payload.categories,
   players: payload.players,
-  round: match<StateMessage["round"], GameState["round"]>(payload.round)
-    .with("Single", () => "single")
-    .with("Double", () => "double")
-    .with("Final", () => "final")
-    .exhaustive(),
+  round: match<StateMessage["round_idx"], GameState["round"]>(payload.round_idx)
+    .with(1, () => "double")
+    .with(2, () => "final")
+    .otherwise(() => "single"),
   cost: payload.cost,
   category: payload.category,
   clue: payload.clue,
