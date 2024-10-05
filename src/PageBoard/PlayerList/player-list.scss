@@ -3,7 +3,7 @@
 .page-board_player-list {
   &_container {
     display: grid;
-    grid-template-columns: auto fit-content(10px);
+    grid-template-columns: auto 9ch;
     column-gap: sizes.$xl;
     position: relative;
     width: 500px;
