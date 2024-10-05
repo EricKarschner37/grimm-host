@@ -77,17 +77,13 @@ const PageBoardContent = ({
             />
             <Text variant="secondary" text="Scan to join!" />
           </div>
-          {gameState.round !== "final" && (
+          {gameState.bareRound.round_type !== "FinalRound" && (
             <Button
               size="sm"
               variant="secondary"
               paddingTop="xs"
               paddingBottom="xs"
-              onClick={
-                gameState.round === "single"
-                  ? socket.startDouble
-                  : socket.startFinal
-              }
+              onClick={socket.nextRound}
               label="Skip Round"
               icon={RightArrowIcon}
             />

@@ -3,59 +3,26 @@ export type Player = {
   balance: number;
 };
 
-//export interface BaseGameState {
-//  categories: [string, string, string, string, string, string];
-//  players: Record<string, Player>;
-//  round: "single" | "double" | "final";
-//}
-//
-//export interface BoardState extends BaseGameState {
-//  type: "board";
-//  cluesShown: number;
-//}
-//
-//export interface ClueState extends BaseGameState {
-//  type: "clue";
-//  cost: number;
-//  category: string;
-//  clue: string;
-//  buzzersOpen: boolean;
-//  buzzedPlayer: string;
-//  respondedPlayers: string[];
-//}
-//
-//export interface ResponseState extends BaseGameState {
-//  type: "response";
-//  cost: number;
-//  category: string;
-//  clue: string;
-//  response: string;
-//}
-//
-//export interface DailyDoubleState extends BaseGameState {
-//  type: "daily-double";
-//  category: string;
-//  activePlayer: string;
-//}
-//
-//export interface FinalWagerState extends BaseGameState {
-//  type: "final-wager";
-//  category: string;
-//}
-//
-//export interface FinalClueState extends BaseGameState {
-//  type: "final-clue";
-//  category: string;
-//  clue: string;
-//}
+interface BareCategory {
+  category: string;
+  clue_costs: number[];
+}
 
-//export type GameState =
-//  | BoardState
-//  | ResponseState
-//  | ClueState
-//  | DailyDoubleState
-//  | FinalWagerState
-//  | FinalClueState;
+interface BareDefaultRound {
+  round_type: "DefaultRound";
+  name: string;
+  categories: BareCategory[];
+  default_max_wager: number;
+}
+
+interface BareFinalRound {
+  round_type: "FinalRound";
+  name: string;
+  category: string;
+  default_max_wager: number;
+}
+
+type BareRound = BareDefaultRound | BareFinalRound;
 
 export interface GameState {
   type:
@@ -65,7 +32,6 @@ export interface GameState {
     | "daily-double"
     | "final-wager"
     | "final-clue";
-  categories: [string, string, string, string, string, string];
   buzzersOpen: boolean;
   buzzedPlayer: string;
   activePlayer: string;
@@ -75,8 +41,8 @@ export interface GameState {
   clue: string;
   response: string;
   players: Record<string, Player>;
-  round: "single" | "double" | "final";
   cluesShown: number;
+  bareRound: BareRound;
 }
 
 export interface StateMessage {
@@ -88,7 +54,6 @@ export interface StateMessage {
     | "DailyDouble"
     | "FinalWager"
     | "FinalClue";
-  categories: [string, string, string, string, string, string];
   buzzers_open: boolean;
   buzzed_player: string;
   active_player: string;
@@ -100,4 +65,5 @@ export interface StateMessage {
   players: Record<string, { name: string; balance: number }>;
   round_idx: number;
   clues_shown: number;
+  bare_round: BareRound;
 }

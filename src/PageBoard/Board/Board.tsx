@@ -32,7 +32,11 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
   React.useMemo(() => {
     const rows: BoardSquare[][] = [];
 
-    const categories = gameState.categories.map((category) => ({
+    if (gameState.bareRound.round_type === "FinalRound") {
+      return rows;
+    }
+
+    const categories = gameState.bareRound.categories.map(({ category }) => ({
       element: <Category category={category} key={category} />,
     }));
 
@@ -40,14 +44,10 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
 
     for (let i = 0; i < 5; i += 1) {
       const cols = [];
-      const cost = match(gameState.round)
-        .with("single", () => 200 * (i + 1))
-        .with("double", () => 400 * (i + 1))
-        .with("final", () => 0)
-        .exhaustive();
 
       for (let j = 0; j < 6; j += 1) {
         const hasBeenRevealed = gameState.cluesShown & (1 << (i * 6 + j));
+        const cost = gameState.bareRound.categories[j].clue_costs[i];
         const element = hasBeenRevealed ? (
           <Square />
         ) : (
@@ -65,7 +65,7 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
     }
 
     return rows;
-  }, [gameState.categories, gameState.cluesShown, gameState.round, socket]);
+  }, [gameState.bareRound, gameState.cluesShown, socket]);
 
 export const Board = ({ gameState, socket }: BoardProps) => {
   const board = useBoard({ gameState, socket });

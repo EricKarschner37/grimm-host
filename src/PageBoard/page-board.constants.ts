@@ -1,8 +1,7 @@
 import {
   BoardMessage,
+  NextRoundMessage,
   ResponseMessage,
-  StartDoubleMessage,
-  StartFinalMessage,
 } from "PageBoard/page-board.types";
 
 export const RESPONSE_MESSAGE: ResponseMessage = {
@@ -11,17 +10,11 @@ export const RESPONSE_MESSAGE: ResponseMessage = {
 
 export const RESPONSE_MESSAGE_STRING = JSON.stringify(RESPONSE_MESSAGE);
 
-export const START_DOUBLE_MESSAGE: StartDoubleMessage = {
-  request: "start_double",
+export const NEXT_ROUND_MESSAGE: NextRoundMessage = {
+  request: "next_round",
 };
 
-export const START_DOUBLE_MESSAGE_STRING = JSON.stringify(START_DOUBLE_MESSAGE);
-
-export const START_FINAL_MESSAGE: StartFinalMessage = {
-  request: "start_final",
-};
-
-export const START_FINAL_MESSAGE_STRING = JSON.stringify(START_FINAL_MESSAGE);
+export const NEXT_ROUND_MESSAGE_STRING = JSON.stringify(NEXT_ROUND_MESSAGE);
 
 export const BOARD_MESSAGE: BoardMessage = {
   request: "board",

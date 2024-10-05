@@ -38,7 +38,15 @@ const PagePlayerActiveContent = ({
   const canBuzz = gameState.type === "clue" && gameState.buzzersOpen;
 
   if (gameState.type === "board") {
-    mainContent = <ClientCategories categories={gameState.categories} />;
+    mainContent = (
+      <ClientCategories
+        categories={
+          gameState.bareRound.round_type === "FinalRound"
+            ? []
+            : gameState.bareRound.categories.map(({ category }) => category)
+        }
+      />
+    );
   }
 
   if (gameState.type === "response") {

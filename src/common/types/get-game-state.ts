@@ -12,12 +12,8 @@ export const getGameStateFromStateMessage = (
     .with("FinalClue", () => "final-clue")
     .with("FinalWager", () => "final-wager")
     .exhaustive(),
-  categories: payload.categories,
   players: payload.players,
-  round: match<StateMessage["round_idx"], GameState["round"]>(payload.round_idx)
-    .with(1, () => "double")
-    .with(2, () => "final")
-    .otherwise(() => "single"),
+  bareRound: payload.bare_round,
   cost: payload.cost,
   category: payload.category,
   clue: payload.clue,

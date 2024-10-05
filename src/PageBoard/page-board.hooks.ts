@@ -1,8 +1,7 @@
 import {
   BOARD_MESSAGE_STRING,
   RESPONSE_MESSAGE_STRING,
-  START_DOUBLE_MESSAGE_STRING,
-  START_FINAL_MESSAGE_STRING,
+  NEXT_ROUND_MESSAGE_STRING,
 } from "PageBoard/page-board.constants";
 import {
   makeRemoveMessage,
@@ -25,8 +24,7 @@ export interface BoardSocketWrapper extends SocketWrapper {
   setPlayerBalance: (name: string, balance: number) => void;
   reveal: (row: number, col: number) => void;
   goToResponse: () => void;
-  startDouble: () => void;
-  startFinal: () => void;
+  nextRound: () => void;
   showBoard: () => void;
   removePlayer: (player: string) => void;
 }
@@ -76,12 +74,8 @@ export const useBoardSocket = ({
     socket.send(RESPONSE_MESSAGE_STRING);
   });
 
-  const startDouble = useStableCallback(() => {
-    socket.send(START_DOUBLE_MESSAGE_STRING);
-  });
-
-  const startFinal = useStableCallback(() => {
-    socket.send(START_FINAL_MESSAGE_STRING);
+  const nextRound = useStableCallback(() => {
+    socket.send(NEXT_ROUND_MESSAGE_STRING);
   });
 
   const showBoard = useStableCallback(() => {
@@ -95,8 +89,7 @@ export const useBoardSocket = ({
       setPlayerBalance,
       removePlayer,
       goToResponse,
-      startDouble,
-      startFinal,
+      nextRound,
       showBoard,
     }),
     [
@@ -106,8 +99,7 @@ export const useBoardSocket = ({
       setPlayerBalance,
       showBoard,
       socket,
-      startDouble,
-      startFinal,
+      nextRound,
     ]
   );
 };

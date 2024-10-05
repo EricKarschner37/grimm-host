@@ -29,7 +29,15 @@ export const PageHostContent = ({
   const actionTray: ReactNode[] = [];
 
   if (gameState.type === "board") {
-    mainContent = <ClientCategories categories={gameState.categories} />;
+    mainContent = (
+      <ClientCategories
+        categories={
+          gameState.bareRound.round_type === "FinalRound"
+            ? []
+            : gameState.bareRound.categories.map(({ category }) => category)
+        }
+      />
+    );
   }
 
   if (

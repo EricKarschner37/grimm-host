@@ -8,12 +8,8 @@ export interface ResponseMessage {
   request: "response";
 }
 
-export interface StartDoubleMessage {
-  request: "start_double";
-}
-
-export interface StartFinalMessage {
-  request: "start_final";
+export interface NextRoundMessage {
+  request: "next_round";
 }
 
 export interface BoardMessage {

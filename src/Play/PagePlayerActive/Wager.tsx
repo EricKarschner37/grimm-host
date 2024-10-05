@@ -14,14 +14,7 @@ const validateWager = (
   gameState: GameState,
   balance: number
 ) => {
-  const max = Math.max(
-    balance,
-    gameState.round === "final"
-      ? 3000
-      : gameState.round === "double"
-      ? 2000
-      : 1000
-  );
+  const max = Math.max(balance, gameState.bareRound.default_max_wager);
 
   return !Number.isNaN(wager) && wager <= max && wager >= 5;
 };

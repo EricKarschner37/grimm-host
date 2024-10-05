@@ -2,7 +2,7 @@ import { Square } from "common/Square/Square";
 import "./client-categories.scss";
 
 export interface ClientCategoriesProps {
-  categories: [string, string, string, string, string, string];
+  categories: string[];
 }
 
 const BLOCK = "common_client-categories";
