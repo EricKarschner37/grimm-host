@@ -6,6 +6,10 @@
     grid-template-columns: auto fit-content(10px);
     column-gap: sizes.$xl;
     position: relative;
+    width: 500px;
+    height: 300px;
+    overflow: scroll;
+
     * {
       margin-top: sizes.$md;
       margin-bottom: sizes.$sm;
