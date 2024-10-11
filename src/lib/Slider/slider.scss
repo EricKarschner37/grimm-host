@@ -1,0 +1,22 @@
+@use "src/sizes";
+
+.lib__slider {
+  &__bar {
+    height: sizes.$md;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  &__circle {
+    position: relative;
+    background-color: white;
+    border: 2px solid grey;
+    border-radius: sizes.$lg;
+    cursor: pointer;
+  }
+
+  &__values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

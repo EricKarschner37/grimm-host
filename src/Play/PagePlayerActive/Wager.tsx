@@ -1,7 +1,9 @@
 import { PlayerSocketWrapper } from "Play/play.hooks";
 import { GameState } from "common/types/game-state.types";
 import { Button } from "lib/Button/Button";
+import { Flex } from "lib/Flex";
 import { Input } from "lib/Input/Input";
+import { Slider } from "lib/Slider/Slider";
 import { Text } from "lib/Text";
 import React from "react";
 
@@ -28,7 +30,9 @@ export const Wager = ({
   gameState: GameState;
   balance: number;
 }) => {
-  const [wagerText, setWagerText] = React.useState("");
+  const maxWager = Math.max(balance, gameState.bareRound.default_max_wager);
+
+  const [wagerValue, setWagerValue] = React.useState(maxWager);
   const [submittedWager, setSubmittedWager] = React.useState<
     number | undefined
   >(undefined);
@@ -52,21 +56,23 @@ export const Wager = ({
         e.preventDefault();
       }}
     >
-      <Input
-        hint="Wager"
-        value={wagerText}
-        onChange={(value) => validateInProgress(value) && setWagerText(value)}
-      />
-      <Button
-        label="Submit"
-        marginLeft="md"
-        onClick={() => {
-          const wager = Number.parseInt(wagerText);
-          if (!validateWager(wager, gameState, balance)) return;
-          socket.wager(wager);
-          setSubmittedWager(wager);
-        }}
-      />
+      <Flex direction="column" gap="8px">
+        <Slider
+          min={5}
+          max={maxWager}
+          value={wagerValue}
+          onValueChange={setWagerValue}
+          increment={1}
+        />
+        <Button
+          label="Submit"
+          marginLeft="md"
+          onClick={() => {
+            socket.wager(wagerValue);
+            setSubmittedWager(wagerValue);
+          }}
+        />
+      </Flex>
     </form>
   );
 };
