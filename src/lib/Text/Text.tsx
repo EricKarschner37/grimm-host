@@ -29,12 +29,12 @@ export const Text = ({
   const styleClassName = `${BLOCK}--${textStyle}`;
   return (
     <p
-      className={classNames([
+      className={classNames(
         ...helperClassNames,
         variantClassName,
         styleClassName,
-        className,
-      ])}
+        className
+      )}
     >
       {text}
     </p>

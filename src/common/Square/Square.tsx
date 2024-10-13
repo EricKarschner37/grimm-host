@@ -15,11 +15,13 @@ export const Square = ({ children, className, onClick }: SquareProps) => {
     <Flex
       direction="column"
       justify="center"
-      className={classNames([
+      isFullWidth
+      isFullHeight
+      className={classNames(
         BLOCK,
         className,
-        Boolean(onClick) ? `${BLOCK}_clickable` : undefined,
-      ])}
+        Boolean(onClick) ? `${BLOCK}_clickable` : undefined
+      )}
       onClick={onClick}
     >
       {children}

@@ -21,10 +21,10 @@ export const TabList = <T extends string>({
       {tabs.map(({ value, label }) => (
         <Flex
           direction="column"
-          className={classNames([
+          className={classNames(
             `${BLOCK}_item`,
-            selectedTab === value ? `${BLOCK}_item-active` : undefined,
-          ])}
+            selectedTab === value ? `${BLOCK}_item-active` : undefined
+          )}
           onClick={() => onSelectTab(value)}
         >
           {label === undefined ? value : label}

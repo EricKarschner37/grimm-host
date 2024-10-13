@@ -50,11 +50,11 @@ export const Button = ({
   });
   return (
     <button
-      className={classNames([
+      className={classNames(
         BLOCK,
         `${BLOCK}_variant-${variant}`,
-        ...helperClassNames,
-      ])}
+        ...helperClassNames
+      )}
       onClick={onClick}
     >
       <Flex direction="row" gap="2px" align="center" justify="center">

@@ -23,10 +23,7 @@ export const PopoverButton = ({
   return (
     <span className={`${BLOCK}_container`}>
       <button
-        className={classNames([
-          `${BLOCK}_button`,
-          `${BLOCK}_button-${variant}`,
-        ])}
+        className={classNames(`${BLOCK}_button`, `${BLOCK}_button-${variant}`)}
         onClick={onClick}
       >
         <div className={`${BLOCK}_base`}>{CircleIcon}</div>

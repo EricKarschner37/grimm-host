@@ -1,6 +1,6 @@
 import { LayoutProps, MarginProps, PaddingProps, Size } from "lib/types";
 
-export const classNames = (names: (string | null | undefined)[]) =>
+export const classNames = (...names: (string | null | undefined)[]) =>
   names
     .filter((name) => name !== undefined && name !== null && name !== "")
     .join(" ");

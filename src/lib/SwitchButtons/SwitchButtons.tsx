@@ -20,10 +20,10 @@ export const SwitchButtons = <Opt,>({
   const buttons = options.map((option) => (
     <p
       key={JSON.stringify(option)}
-      className={classNames([
+      className={classNames(
         BLOCK,
-        selected === option ? `${BLOCK}_selected` : undefined,
-      ])}
+        selected === option ? `${BLOCK}_selected` : undefined
+      )}
       onClick={() => setSelected(option)}
     >
       {getLabelForOption(option)}

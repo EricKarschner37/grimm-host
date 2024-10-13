@@ -13,7 +13,7 @@ export const Panel = ({ children, ...rest }: PanelProps) => {
   const helperClassNames = getHelperClassNames(rest);
   console.log(helperClassNames);
   return (
-    <div className={classNames([`${BLOCK}_container`, ...helperClassNames])}>
+    <div className={classNames(`${BLOCK}_container`, ...helperClassNames)}>
       {children}
     </div>
   );

@@ -27,7 +27,7 @@ export const FlexItem = ({
     : shrink;
   return (
     <div
-      className={classNames([BLOCK, className])}
+      className={classNames(BLOCK, className)}
       style={{ alignSelf, flexGrow, flexShrink, flexBasis: basis }}
     >
       {children}

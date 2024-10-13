@@ -51,12 +51,8 @@ export const Wager = ({
   }
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
-      <Flex direction="column" gap="8px">
+    <Flex direction="column" gap="8px" align="center" isFullWidth>
+      <div style={{ width: "60%" }}>
         <Slider
           min={5}
           max={maxWager}
@@ -64,15 +60,15 @@ export const Wager = ({
           onValueChange={setWagerValue}
           increment={1}
         />
-        <Button
-          label="Submit"
-          marginLeft="md"
-          onClick={() => {
-            socket.wager(wagerValue);
-            setSubmittedWager(wagerValue);
-          }}
-        />
-      </Flex>
-    </form>
+      </div>
+      <Button
+        label="Submit"
+        marginLeft="md"
+        onClick={() => {
+          socket.wager(wagerValue);
+          setSubmittedWager(wagerValue);
+        }}
+      />
+    </Flex>
   );
 };

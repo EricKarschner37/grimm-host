@@ -11,7 +11,7 @@ export const Spacing = React.forwardRef<HTMLDivElement, SpacingProps>(
   ({ children, ...rest }, ref) => {
     const helperClassNames = getHelperClassNames(rest);
     return (
-      <div className={classNames([...helperClassNames, BLOCK])} ref={ref}>
+      <div className={classNames(...helperClassNames, BLOCK)} ref={ref}>
         {children}
       </div>
     );

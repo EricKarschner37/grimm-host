@@ -21,7 +21,7 @@ export const Input = ({
 }: InputProps) => {
   return (
     <input
-      className={classNames([`${BLOCK}`, className])}
+      className={classNames(`${BLOCK}`, className)}
       placeholder={hint}
       onChange={(e) => onChange(e.target.value)}
       value={value}

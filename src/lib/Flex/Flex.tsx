@@ -54,7 +54,7 @@ export const Flex = ({
   const helperClassNames = getHelperClassNames(rest);
   return (
     <div
-      className={classNames([BLOCK, ...helperClassNames, className])}
+      className={classNames(BLOCK, ...helperClassNames, className)}
       style={{
         gap,
         flexDirection: direction,

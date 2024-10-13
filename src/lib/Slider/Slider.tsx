@@ -5,6 +5,8 @@ import { clamp } from "lib/utils/clamp";
 import { Text } from "lib/Text";
 import { Flex } from "lib/Flex";
 import { Input } from "lib/Input/Input";
+import { classNames } from "lib/utils/classNames";
+import { Action } from "lib/Action/Action";
 
 const BLOCK = "lib__slider";
 
@@ -48,11 +50,16 @@ export const Slider = ({
     return (event: MouseEvent) => {
       const xCoord = clamp(event.x, xCoordMin, xCoordMax);
       const progress = (xCoord - xCoordMin) / xRange;
-      const newValue = progress * (max - min) + min;
-      const newValueRounded = Math.round(newValue / increment) * increment;
-      if (newValueRounded !== value) {
-        onValueChange(newValueRounded);
+      let newValueRounded: number;
+      if (xCoord === xCoordMax) {
+        newValueRounded = max;
+      } else if (xCoord === xCoordMin) {
+        newValueRounded = min;
+      } else {
+        const newValue = progress * (max - min) + min;
+        newValueRounded = Math.round(newValue / increment) * increment;
       }
+      onValueChange(newValueRounded);
     };
   });
 
@@ -66,11 +73,29 @@ export const Slider = ({
     };
   }, [endSliderDrag]);
   return (
-    <Flex direction="column" align="stretch" gap="8px">
+    <Flex direction="column" align="stretch" gap="8px" isFullWidth>
       <div className={`${BLOCK}__values-grid`}>
-        <Text text={min.toString()} variant="secondary" margin="none" />
-        <Text text={value.toString()} margin="none" />
-        <Text text={max.toString()} variant="secondary" margin="none" />
+        <Action onClick={() => onValueChange(min)}>
+          <Text
+            className={classNames("noselect", `${BLOCK}__left-text`)}
+            text={min.toString()}
+            variant="secondary"
+            margin="none"
+          />
+        </Action>
+        <Text
+          className={classNames("noselect", `${BLOCK}__center-text`)}
+          text={value.toString()}
+          margin="none"
+        />
+        <Action onClick={() => onValueChange(max)}>
+          <Text
+            className={classNames("noselect", `${BLOCK}__right-text`)}
+            text={max.toString()}
+            variant="secondary"
+            margin="none"
+          />
+        </Action>
       </div>
       <div
         ref={barRef}

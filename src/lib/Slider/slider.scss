@@ -19,4 +19,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  &__left-text,
+  &__right-text {
+    cursor: pointer;
+  }
+
+  &__center-text {
+    text-align: center;
+  }
+
+  &__right-text {
+    text-align: right;
+  }
 }

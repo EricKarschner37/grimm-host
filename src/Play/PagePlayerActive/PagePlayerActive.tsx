@@ -115,7 +115,7 @@ const PagePlayerActiveContent = ({
   }
 
   return (
-    <Flex isFullHeight isFullWidth direction="column" align="center">
+    <Flex isFullHeight isFullWidth direction="column" align="stretch">
       <Flex
         justify="space-between"
         align="center"
