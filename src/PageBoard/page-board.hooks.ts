@@ -16,7 +16,7 @@ import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
 import React from "react";
 
 export interface UseBoardSocketArgs {
-  gameIndex: string;
+  lobbyId: string;
   setGameState: (value: GameState) => void;
 }
 
@@ -38,11 +38,11 @@ const deserializeBoardMessage = (message: string): StateMessage | null => {
 };
 
 export const useBoardSocket = ({
-  gameIndex,
+  lobbyId,
   setGameState,
 }: UseBoardSocketArgs): BoardSocketWrapper => {
   const socket = useSocket({
-    path: `/api/ws/${gameIndex}/board`,
+    path: `/api/ws/${lobbyId}/board`,
     onMessage: (e: MessageEvent) => {
       const message = deserializeBoardMessage(e.data);
       if (!message) {
@@ -53,7 +53,7 @@ export const useBoardSocket = ({
         setGameState(getGameStateFromStateMessage(message));
       }
     },
-    enabled: Boolean(gameIndex),
+    enabled: Boolean(lobbyId),
   });
 
   const reveal = useStableCallback((row: number, col: number) => {

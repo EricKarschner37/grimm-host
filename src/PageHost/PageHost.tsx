@@ -113,14 +113,13 @@ export const PageHostContent = ({
 };
 
 export const PageHost = () => {
-  const { gameIndex } = useParams<"gameIndex">();
+  const { lobbyId } = useParams<"lobbyId">();
 
   const [gameState, setGameState] = React.useState<GameState | null>(null);
 
-  const indexNumber = parseInt(gameIndex ?? "NaN");
-  const socket = useHostSocket({ gameIndex: indexNumber, setGameState });
+  const socket = useHostSocket({ lobbyId, setGameState });
 
-  if (!gameIndex || Number.isNaN(indexNumber)) {
+  if (!lobbyId) {
     return <Navigate to="/" replace={true} />;
   }
 

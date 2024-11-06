@@ -6,7 +6,7 @@ export const HostTab = () => {
   const { data: gamesResults } = useGetGames();
   const games = gamesResults
     ?.map((result) => ({
-      num: result.game_idx,
+      lobbyId: result.lobby_id,
       created: new Date(result.created),
     }))
     .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());
@@ -15,9 +15,9 @@ export const HostTab = () => {
     <>
       {games.map((game) => (
         <GameListing
-          key={game.num}
+          key={game.lobbyId}
           urlPath="/host"
-          num={game.num}
+          lobbyId={game.lobbyId}
           created={game.created}
         />
       ))}

@@ -11,7 +11,7 @@ import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
 import React from "react";
 
 export interface UseHostSocketProps {
-  gameIndex: number;
+  lobbyId: string | undefined;
   setGameState: React.Dispatch<React.SetStateAction<GameState | null>>;
 }
 
@@ -53,11 +53,11 @@ const CLOSE_MESSAGE: CloseBuzzersMessage = {
 const CLOSE_MESSAGE_STRING = JSON.stringify(CLOSE_MESSAGE);
 
 export const useHostSocket = ({
-  gameIndex,
+  lobbyId,
   setGameState,
 }: UseHostSocketProps): HostSocketWrapper => {
   const socket = useSocket({
-    path: `/api/ws/${gameIndex}/host`,
+    path: `/api/ws/${lobbyId}/host`,
     onMessage: (e: MessageEvent) => {
       const message = deserializeMessage(e.data);
       if (!message) {
@@ -68,7 +68,7 @@ export const useHostSocket = ({
         setGameState(getGameStateFromStateMessage(message));
       }
     },
-    enabled: !Number.isNaN(gameIndex),
+    enabled: !!lobbyId,
   });
 
   const reportPlayerCorrect = React.useCallback(

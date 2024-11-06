@@ -32,8 +32,8 @@ export const BoardTab = () => {
         }
       })
       .then((obj) => {
-        if ("gameIndex" in obj) {
-          navigate(String(obj.gameIndex));
+        if ("lobby_id" in obj) {
+          navigate(String(obj.lobby_id));
         }
       })
       .catch((reason) => console.log(reason));

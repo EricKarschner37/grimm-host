@@ -13,11 +13,10 @@ import {
   isCategoriesMessageShape,
   isStateMessageShape,
 } from "common/types/game-state.type-guards";
-import { ResponseMessage } from "PageBoard/page-board.types";
 
 export interface UsePlayerSocketProps {
   username: string;
-  gameIndex: number;
+  lobbyId: string;
   setGameState: React.Dispatch<React.SetStateAction<GameState | null>>;
 }
 
@@ -60,11 +59,11 @@ const makePlayerResponseMessage = (response: string) => {
 
 export const usePlayerSocket = ({
   username,
-  gameIndex,
+  lobbyId,
   setGameState,
 }: UsePlayerSocketProps): PlayerSocketWrapper => {
   const socket = useSocket({
-    path: `/api/ws/${gameIndex}/buzzer`,
+    path: `/api/ws/${lobbyId}/buzzer`,
     onMessage: (e: MessageEvent) => {
       console.log("message in usePlayerSocket");
       const message = deserializeMessage(e.data);

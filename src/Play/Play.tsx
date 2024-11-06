@@ -7,19 +7,17 @@ import { useGetGame } from "lib/utils/hooks/use-get-game";
 import { Navigate, useParams, useSearchParams } from "react-router-dom";
 
 export const Play = () => {
-  const { gameIndex } = useParams<"gameIndex">();
+  const { lobbyId } = useParams<"lobbyId">();
   const [searchParams] = useSearchParams();
 
-  const indexNumber = parseInt(gameIndex ?? "NaN");
-
   const { data, isLoading } = useGetGame({
-    gameIndex: indexNumber,
-    enabled: !Number.isNaN(indexNumber),
+    lobbyId: lobbyId || "",
+    enabled: !!lobbyId,
   });
 
   // TODO - handle 404 from game endpoint
 
-  if (!gameIndex || Number.isNaN(indexNumber)) {
+  if (!lobbyId) {
     return <Navigate to="/" replace={true} />;
   }
 
@@ -39,7 +37,7 @@ export const Play = () => {
           <Text
             marginTop="none"
             marginBottom="xs"
-            text={`Join Game #${gameIndex}`}
+            text={`Join lobby: ${lobbyId}`}
             variant="title"
           />
 
@@ -67,7 +65,7 @@ export const Play = () => {
 
   return (
     <>
-      <PagePlayerActive username={username} gameIndex={indexNumber} />
+      <PagePlayerActive username={username} lobbyId={lobbyId} />
     </>
   );
 };

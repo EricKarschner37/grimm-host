@@ -16,26 +16,26 @@ import QRCode from "react-qr-code";
 import { Text } from "lib/Text";
 
 const PageBoardRedirector = () => {
-  const { gameIndex } = useParams<"gameIndex">();
+  const { lobbyId } = useParams<"lobbyId">();
 
-  if (!gameIndex || Number.isNaN(gameIndex)) {
+  if (!lobbyId) {
     return <Navigate to="/board" />;
   }
 
-  return <PageBoard gameIndex={gameIndex} />;
+  return <PageBoard lobbyId={lobbyId} />;
 };
 
 const BLOCK = "page_board";
 
-const PageBoard = ({ gameIndex }: { gameIndex: string }) => {
+const PageBoard = ({ lobbyId }: { lobbyId: string }) => {
   const [gameState, setGameState] = React.useState<GameState | null>(null);
 
-  const socket = useBoardSocket({ gameIndex: gameIndex, setGameState });
+  const socket = useBoardSocket({ lobbyId, setGameState });
 
   return (
     <Suspender
       render={PageBoardContent}
-      props={{ gameState, socket, gameIndex: Number.parseInt(gameIndex) }}
+      props={{ gameState, socket, lobbyId }}
       renderEmpty={() => <p>Connecting...</p>}
       shouldRender={(props: {
         gameState: GameState | null;
@@ -45,13 +45,13 @@ const PageBoard = ({ gameIndex }: { gameIndex: string }) => {
 };
 
 interface PageBoardContentProps extends BoardProps {
-  gameIndex: number;
+  lobbyId: string;
 }
 
 const PageBoardContent = ({
   gameState,
   socket,
-  gameIndex,
+  lobbyId,
 }: PageBoardContentProps) => {
   return (
     <div className={`${BLOCK}-container`}>
@@ -72,7 +72,7 @@ const PageBoardContent = ({
           <div style={{ textAlign: "center" }}>
             <QRCode
               size={128}
-              value={`https://${window.location.host}/play/${gameIndex}`}
+              value={`https://${window.location.host}/play/${lobbyId}`}
               width={28}
             />
             <Text variant="secondary" text="Scan to join!" />

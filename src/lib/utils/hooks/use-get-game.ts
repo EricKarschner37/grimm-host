@@ -7,7 +7,7 @@ export interface GetGameResult {
 }
 
 export interface GetGameArgs {
-  gameIndex: number;
+  lobbyId: string;
   enabled?: boolean;
 }
 
@@ -25,9 +25,9 @@ const validator = (obj: any): obj is GetGameResult =>
   isStringArray(obj.categories) &&
   isStringArray(obj.players);
 
-export const useGetGame = ({ gameIndex, enabled }: GetGameArgs) => {
+export const useGetGame = ({ lobbyId, enabled }: GetGameArgs) => {
   return useQuery<GetGameResult>({
-    path: `${ENDPOINT}${gameIndex}`,
+    path: `${ENDPOINT}${lobbyId}`,
     validator,
     enabled,
   });

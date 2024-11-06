@@ -6,7 +6,7 @@ export const PlayTab = () => {
   const { data: gamesResults } = useGetGames();
   const games = gamesResults
     ?.map((result) => ({
-      num: result.game_idx,
+      lobbyId: result.lobby_id,
       created: new Date(result.created),
     }))
     .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());
@@ -15,7 +15,11 @@ export const PlayTab = () => {
     <>
       {games && games.length > 0 ? (
         games.map((game) => (
-          <GameListing key={game.num} num={game.num} created={game.created} />
+          <GameListing
+            key={game.lobbyId}
+            lobbyId={game.lobbyId}
+            created={game.created}
+          />
         ))
       ) : (
         <EmptyState message="There are currently no active games. Try refreshing the page!" />

@@ -14,7 +14,7 @@ import { FlexItem } from "lib/FlexItem/FlexItem";
 
 export interface PagePlayerActiveProps {
   username: string;
-  gameIndex: number;
+  lobbyId: string;
 }
 
 interface PagePlayerActiveContentProps {
@@ -148,10 +148,10 @@ const PagePlayerActiveContent = ({
 
 export const PagePlayerActive = ({
   username,
-  gameIndex,
+  lobbyId,
 }: PagePlayerActiveProps) => {
   const [gameState, setGameState] = React.useState<GameState | null>(null);
-  const socket = usePlayerSocket({ username, gameIndex, setGameState });
+  const socket = usePlayerSocket({ username, lobbyId, setGameState });
 
   return (
     <Suspender

@@ -144,5 +144,5 @@ export const Board = ({ gameState, socket }: BoardProps) => {
     );
   }
 
-  return <div style={{ width: "100%" }}>mainContent</div>;
+  return <div style={{ height: "100%", width: "100%" }}>{mainContent}</div>;
 };

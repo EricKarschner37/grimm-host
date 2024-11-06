@@ -3,7 +3,7 @@ import { getFormattedTimeSince } from "lib/utils/get-formatted-time-since";
 import { NavLink } from "react-router-dom";
 
 interface GameOption {
-  num: number;
+  lobbyId: string;
   created: Date;
 }
 
@@ -15,13 +15,13 @@ const BLOCK = "home_play-tab_game-listing";
 
 export const GameListing = ({
   urlPath = "/play",
-  num,
+  lobbyId,
   created,
 }: GameListingProps) => {
   return (
     <p>
-      {`Game #${num} - created ${getFormattedTimeSince(created)}`}
-      <NavLink to={`${urlPath}/${num}`}>
+      {`Lobby id: ${lobbyId} - created ${getFormattedTimeSince(created)}`}
+      <NavLink to={`${urlPath}/${lobbyId}`}>
         <Button size="sm" marginLeft="lg" label="Join" />
       </NavLink>
     </p>

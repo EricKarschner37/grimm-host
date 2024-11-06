@@ -7,9 +7,9 @@ import { PageBoard } from "PageBoard/PageBoard";
 import { PageHost } from "PageHost/PageHost";
 
 const router = createBrowserRouter([
-  { path: "/play/:gameIndex", element: <Play /> },
-  { path: "/board/:gameIndex", element: <PageBoard /> },
-  { path: "/host/:gameIndex", element: <PageHost /> },
+  { path: "/play/:lobbyId", element: <Play /> },
+  { path: "/board/:lobbyId", element: <PageBoard /> },
+  { path: "/host/:lobbyId", element: <PageHost /> },
   {
     path: "/",
     element: <Home tab="play" />,
