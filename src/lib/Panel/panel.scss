@@ -3,6 +3,18 @@
 .lib_panel {
   &_container {
     border: 2px solid colors.$ui-border;
-    border-radius: 4px;
+    border-radius: 8px;
+
+    &--dark {
+      background-color: #{colors.$background};
+      --ui-text-color: #{colors.$text};
+      --ui-text-color-secondary: #{colors.$text-secondary};
+    }
+
+    &--light {
+      background-color: white;
+      --ui-text-color: #{colors.$text-dark};
+      --ui-text-color-secondary: #{colors.$text-secondary-dark};
+    }
   }
 }

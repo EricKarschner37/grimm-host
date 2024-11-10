@@ -6,14 +6,30 @@ import { classNames, getHelperClassNames } from "lib/utils/classNames";
 const BLOCK = "lib_panel";
 
 export type PanelProps = React.PropsWithChildren<
-  MarginProps & PaddingProps & LayoutProps
+  MarginProps &
+    PaddingProps &
+    LayoutProps & {
+      mode?: "light" | "dark";
+      className?: string;
+    }
 >;
 
-export const Panel = ({ children, ...rest }: PanelProps) => {
+export const Panel = ({
+  children,
+  mode = "light",
+  className,
+  ...rest
+}: PanelProps) => {
   const helperClassNames = getHelperClassNames(rest);
-  console.log(helperClassNames);
   return (
-    <div className={classNames(`${BLOCK}_container`, ...helperClassNames)}>
+    <div
+      className={classNames(
+        ...helperClassNames,
+        `${BLOCK}_container`,
+        `${BLOCK}_container--${mode}`,
+        className
+      )}
+    >
       {children}
     </div>
   );

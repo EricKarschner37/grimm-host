@@ -7,6 +7,7 @@ import {
 } from "lib/utils/classNames";
 import { Icon } from "lib/icons/icons-types";
 import { Flex } from "lib/Flex";
+import { NavLink } from "react-router-dom";
 
 export interface ButtonProps extends PaddingProps, MarginProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -14,9 +15,22 @@ export interface ButtonProps extends PaddingProps, MarginProps {
   variant?: Variant;
   size?: Size;
   icon?: Icon;
+  isEnabled?: boolean;
+  href?: string;
 }
 
 const BLOCK = "lib_button";
+
+const Wrapper = ({
+  children,
+  href,
+  isEnabled,
+}: React.PropsWithChildren<{ href?: string; isEnabled?: boolean }>) => {
+  if (!!href && isEnabled) {
+    return <NavLink to={href}>{children}</NavLink>;
+  }
+  return children;
+};
 
 export const Button = ({
   padding,
@@ -32,8 +46,10 @@ export const Button = ({
   onClick,
   label,
   icon,
+  href,
   size = "md",
   variant = "default",
+  isEnabled = true,
 }: ButtonProps) => {
   const helperClassNames = getHelperClassNames({
     padding,
@@ -51,16 +67,19 @@ export const Button = ({
   return (
     <button
       className={classNames(
+        ...helperClassNames,
         BLOCK,
         `${BLOCK}_variant-${variant}`,
-        ...helperClassNames
+        { [`${BLOCK}--disabled`]: !isEnabled }
       )}
       onClick={onClick}
     >
-      <Flex direction="row" gap="2px" align="center" justify="center">
-        {label}
-        {icon}
-      </Flex>
+      <Wrapper href={href} isEnabled={isEnabled}>
+        <Flex direction="row" gap="2px" align="center" justify="center">
+          {label}
+          {icon}
+        </Flex>
+      </Wrapper>
     </button>
   );
 };

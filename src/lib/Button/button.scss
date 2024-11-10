@@ -21,26 +21,30 @@
   }
 
   &_variant-primary {
-    border-color: colors.$primary;
-    background-color: colors.$primary;
-    color: white;
-    stroke: white;
-  }
-
-  &_variant-secondary {
-    border-color: colors.$secondary;
-    background-color: colors.$secondary;
+    border-color: colors.$interaction-primary;
+    background-color: colors.$interaction-primary;
     color: white;
     stroke: white;
 
     &:hover {
-      background-color: colors.$secondary-dark;
+      background-color: colors.$interaction-primary-dark;
+    }
+  }
+
+  &_variant-secondary {
+    border-color: colors.$interaction-secondary;
+    background-color: colors.$interaction-secondary;
+    color: white;
+    stroke: white;
+
+    &:hover {
+      background-color: colors.$interaction-secondary-dark;
     }
   }
 
   &_variant-error {
-    border-color: colors.$error;
-    background-color: colors.$error;
+    border-color: colors.$danger;
+    background-color: colors.$danger;
     color: white;
     stroke: white;
   }

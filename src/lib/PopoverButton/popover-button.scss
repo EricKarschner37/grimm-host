@@ -27,8 +27,8 @@
 
     &-error {
       .lib_popover-button_base {
-        fill: colors.$error;
-        stroke: colors.$error;
+        fill: colors.$danger;
+        stroke: colors.$danger;
       }
 
       .lib_popover-button_fore {
@@ -44,12 +44,12 @@
 
     &-primary {
       stroke: white;
-      fill: colors.$primary;
+      fill: colors.$interaction-primary;
     }
 
     &-secondary {
       stroke: white;
-      fill: colors.$secondary;
+      fill: colors.$interaction-secondary;
     }
 
     * {

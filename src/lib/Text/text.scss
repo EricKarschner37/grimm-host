@@ -1,14 +1,11 @@
 .lib_text {
-  &--primary {
-    color: black;
-  }
+  color: var(--ui-text-color);
 
   &--secondary {
-    color: grey;
+    color: var(--ui-text-color-secondary);
   }
 
   &--title {
-    font-weight: lighter;
     font-size: 32px;
   }
 

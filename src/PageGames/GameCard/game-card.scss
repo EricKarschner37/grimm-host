@@ -1,0 +1,49 @@
+.page-games__game-card {
+  &__details {
+    visibility: hidden;
+    transition: visibility 200ms;
+  }
+
+  &__panel--absolute:hover &__details,
+  &__panel--absolute:focus-within &__details {
+    visibility: visible;
+  }
+
+  &__panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    &:hover {
+      width: 200%;
+      height: 200%;
+    }
+
+    &--absolute {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+
+      transition: width 500ms, height 500ms, z-index 1s, box-shadow 1s;
+
+      &:hover,
+      &:focus-within {
+        width: calc(200% + var(--column-gap));
+        height: 200%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        z-index: 1;
+        transition: width 500ms, height 500ms;
+      }
+    }
+  }
+
+  &__container:not(:last-of-type) &__panel--absolute {
+    left: 0;
+  }
+
+  &__container:last-of-type &__panel--absolute {
+    right: 0;
+  }
+}

@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Play } from "Play/Play";
 import { PageBoard } from "PageBoard/PageBoard";
 import { PageHost } from "PageHost/PageHost";
+import { PageGames } from "PageGames/PageGames";
 
 const router = createBrowserRouter([
   { path: "/play/:lobbyId", element: <Play /> },
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/board",
     element: <Home tab="board" />,
+  },
+  {
+    path: "/games",
+    element: <PageGames />,
   },
 ]);
 

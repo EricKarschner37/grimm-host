@@ -6,7 +6,7 @@ export const PlayTab = () => {
   const { data: gamesResults } = useGetGames();
   const games = gamesResults
     ?.map((result) => ({
-      lobbyId: result.lobby_id,
+      lobbyId: result.lobbyId,
       created: new Date(result.created),
     }))
     .sort(({ created: a }, { created: b }) => b.getTime() - a.getTime());

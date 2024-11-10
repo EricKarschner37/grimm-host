@@ -1,3 +1,5 @@
+import "./action.scss";
+
 export type ActionProps = React.PropsWithChildren<{
   onClick?: () => void;
 }>;

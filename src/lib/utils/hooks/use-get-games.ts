@@ -1,6 +1,5 @@
 import { useQuery } from "lib/utils/hooks/use-query";
 import { isArray } from "lib/utils/typeguard/is-array";
-import { isObject } from "lib/utils/typeguard/is-object";
 import { isNumber, isString } from "lib/utils/typeguard/is-primitive";
 import { makeIsShape } from "lib/utils/typeguard/is-shape";
 
@@ -18,8 +17,16 @@ const validator = (obj: any): obj is GetGamesResult[] =>
   isArray(obj) && obj.every(arrayItemValidator);
 
 export const useGetGames = () => {
-  return useQuery<GetGamesResult[]>({
+  const { data, ...rest } = useQuery<GetGamesResult[]>({
     path: "/api/games",
     validator,
   });
+
+  return {
+    data: data?.map((result) => ({
+      lobbyId: result.lobby_id,
+      created: new Date(result.created),
+    })),
+    ...rest,
+  };
 };
