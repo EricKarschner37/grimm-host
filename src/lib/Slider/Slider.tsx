@@ -47,8 +47,12 @@ export const Slider = ({
     const xCoordMax = barBoundingRect.right;
     const xRange = xCoordMax - xCoordMin;
 
-    return (event: MouseEvent) => {
-      const xCoord = clamp(event.x, xCoordMin, xCoordMax);
+    return (e: MouseEvent | TouchEvent) => {
+      const x = "touches" in e ? e.touches[0].clientX : "x" in e ? e.x : null;
+      if (!x) {
+        return;
+      }
+      const xCoord = clamp(x, xCoordMin, xCoordMax);
       const progress = (xCoord - xCoordMin) / xRange;
       let newValueRounded: number;
       if (xCoord === xCoordMax) {
@@ -68,8 +72,10 @@ export const Slider = ({
   const ratio = Math.round((100 * (value - min)) / (max - min));
   React.useEffect(() => {
     document.addEventListener("mouseup", endSliderDrag);
+    document.addEventListener("touchend", endSliderDrag);
     return () => {
       document.removeEventListener("mouseup", endSliderDrag);
+      document.removeEventListener("touchend", endSliderDrag);
     };
   }, [endSliderDrag]);
   return (
@@ -103,6 +109,17 @@ export const Slider = ({
         style={{
           background: `linear-gradient(to right, blue ${ratio}%, lightgrey ${ratio}%`,
         }}
+        onTouchStart={(e) => {
+          endSliderDrag();
+          const el = barRef.current;
+          if (el) {
+            const handleMouseMove = makeMouseMoveHandler(el);
+            mouseMoveHandlerRef.current = handleMouseMove;
+            handleMouseMove(e.nativeEvent);
+            document.addEventListener("mousemove", handleMouseMove);
+            document.addEventListener("touchmove", handleMouseMove);
+          }
+        }}
         onMouseDown={(e) => {
           endSliderDrag();
           const el = barRef.current;
@@ -112,6 +129,7 @@ export const Slider = ({
 
             handleMouseMove(e.nativeEvent);
             document.addEventListener("mousemove", handleMouseMove);
+            document.addEventListener("touchmove", handleMouseMove);
           }
         }}
       >

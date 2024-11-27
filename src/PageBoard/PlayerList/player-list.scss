@@ -7,7 +7,8 @@
     column-gap: sizes.$xl;
     position: relative;
     width: 500px;
-    height: 300px;
+    min-hight: 150px;
+    max-height: 300px;
     overflow: scroll;
 
     * {
