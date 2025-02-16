@@ -1,7 +1,18 @@
 import { LayoutProps, MarginProps, PaddingProps, Size } from "lib/types";
 
-export const classNames = (...names: (string | null | undefined)[]) =>
+type Name =
+  | string
+  | null
+  | undefined
+  | Record<string, boolean | null | undefined>;
+
+export const classNames = (...names: Name[]) =>
   names
+    .flatMap((name) =>
+      typeof name !== "object" || name == null
+        ? name
+        : Object.entries(name).map(([key, value]) => (value ? key : null))
+    )
     .filter((name) => name !== undefined && name !== null && name !== "")
     .join(" ");
 

@@ -26,3 +26,7 @@ export interface SetPlayerBalanceMessage {
   player: string;
   amount: number;
 }
+
+export interface RandomizeActivePlayerMessage {
+  request: "randomize_active_player";
+}

@@ -19,6 +19,10 @@
 
   &_name {
     width: fit-content;
+
+    &--active {
+      font-weight: bold;
+    }
   }
 
   &_balance-input {

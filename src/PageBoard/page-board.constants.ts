@@ -1,6 +1,7 @@
 import {
   BoardMessage,
   NextRoundMessage,
+  RandomizeActivePlayerMessage,
   ResponseMessage,
 } from "PageBoard/page-board.types";
 
@@ -21,3 +22,11 @@ export const BOARD_MESSAGE: BoardMessage = {
 };
 
 export const BOARD_MESSAGE_STRING = JSON.stringify(BOARD_MESSAGE);
+
+export const RANDOMIZE_ACTIVE_PLAYER_MESSAGE: RandomizeActivePlayerMessage = {
+  request: "randomize_active_player",
+};
+
+export const RANDOMIZE_ACTIVE_PLAYER_MESSAGE_STRING = JSON.stringify(
+  RANDOMIZE_ACTIVE_PLAYER_MESSAGE
+);

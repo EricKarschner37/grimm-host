@@ -1,7 +1,6 @@
 import { BoardSocketWrapper } from "PageBoard/page-board.hooks";
 import { Text } from "lib/Text";
 import { GameState, Player } from "common/types/game-state.types";
-import { Panel } from "lib/Panel/Panel";
 import "./player-list.scss";
 import React from "react";
 import { PopoverButton } from "lib/PopoverButton/PopoverButton";
@@ -9,6 +8,8 @@ import { PencilIcon } from "lib/icons/PencilIcon";
 import { XIcon } from "lib/icons/XIcon";
 import { Input } from "lib/Input/Input";
 import { Flex } from "lib/Flex";
+import { classNames } from "lib/utils/classNames";
+import { Button } from "lib/Button/Button";
 
 const BLOCK = "page-board_player-list";
 
@@ -27,20 +28,34 @@ export const PlayerList = ({
     [gameState.players]
   );
   return (
-    <div className={`${BLOCK}_container`}>
-      {sorted.map(([name, player]) => (
-        <>
-          <PopoverButton
-            onClick={() => socket.removePlayer(name)}
-            variant="error"
-            icon={XIcon}
-          >
-            <Text className={`${BLOCK}_name`} text={name} />
-          </PopoverButton>
-          <PlayerBalance player={player} socket={socket} />
-        </>
-      ))}
-    </div>
+    <Flex direction="column" align="center">
+      <div className={`${BLOCK}_container`}>
+        {sorted.map(([name, player]) => (
+          <>
+            <PopoverButton
+              onClick={() => socket.removePlayer(name)}
+              variant="error"
+              icon={XIcon}
+            >
+              <Text
+                className={classNames(`${BLOCK}_name`, {
+                  [`${BLOCK}_name--active`]: gameState.activePlayer === name,
+                })}
+                text={name}
+              />
+            </PopoverButton>
+            <PlayerBalance player={player} socket={socket} />
+          </>
+        ))}
+      </div>
+      {!gameState.activePlayer ? (
+        <Button
+          label="Choose Player"
+          marginBottom="sm"
+          onClick={() => socket.randomizeActivePlayer()}
+        ></Button>
+      ) : null}
+    </Flex>
   );
 };
 

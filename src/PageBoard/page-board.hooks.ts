@@ -2,6 +2,7 @@ import {
   BOARD_MESSAGE_STRING,
   RESPONSE_MESSAGE_STRING,
   NEXT_ROUND_MESSAGE_STRING,
+  RANDOMIZE_ACTIVE_PLAYER_MESSAGE_STRING,
 } from "PageBoard/page-board.constants";
 import {
   makeRemoveMessage,
@@ -27,6 +28,7 @@ export interface BoardSocketWrapper extends SocketWrapper {
   nextRound: () => void;
   showBoard: () => void;
   removePlayer: (player: string) => void;
+  randomizeActivePlayer: () => void;
 }
 
 const deserializeBoardMessage = (message: string): StateMessage | null => {
@@ -82,6 +84,10 @@ export const useBoardSocket = ({
     socket.send(BOARD_MESSAGE_STRING);
   });
 
+  const randomizeActivePlayer = useStableCallback(() => {
+    socket.send(RANDOMIZE_ACTIVE_PLAYER_MESSAGE_STRING);
+  });
+
   return React.useMemo(
     () => ({
       ...socket,
@@ -91,6 +97,7 @@ export const useBoardSocket = ({
       goToResponse,
       nextRound,
       showBoard,
+      randomizeActivePlayer,
     }),
     [
       goToResponse,
@@ -100,6 +107,7 @@ export const useBoardSocket = ({
       showBoard,
       socket,
       nextRound,
+      randomizeActivePlayer,
     ]
   );
 };
