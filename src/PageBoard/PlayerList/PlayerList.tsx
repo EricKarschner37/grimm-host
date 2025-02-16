@@ -48,9 +48,10 @@ export const PlayerList = ({
           </>
         ))}
       </div>
-      {!gameState.activePlayer ? (
+      {!gameState.activePlayer ||
+      !(gameState.activePlayer in gameState.players) ? (
         <Button
-          label="Choose Player"
+          label="Choose Starting Player"
           marginBottom="sm"
           onClick={() => socket.randomizeActivePlayer()}
         ></Button>

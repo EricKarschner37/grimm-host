@@ -8,14 +8,14 @@ interface BareCategory {
   clue_costs: number[];
 }
 
-interface BareDefaultRound {
+export interface BareDefaultRound {
   round_type: "DefaultRound";
   name: string;
   categories: BareCategory[];
   default_max_wager: number;
 }
 
-interface BareFinalRound {
+export interface BareFinalRound {
   round_type: "FinalRound";
   name: string;
   category: string;

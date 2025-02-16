@@ -13,6 +13,8 @@ import {
   isCategoriesMessageShape,
   isStateMessageShape,
 } from "common/types/game-state.type-guards";
+import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
+import { makeRevealMessage } from "PageBoard/page-board.utils";
 
 export interface UsePlayerSocketProps {
   username: string;
@@ -24,6 +26,7 @@ export interface PlayerSocketWrapper extends SocketWrapper {
   buzz: () => void;
   wager: (value: number) => void;
   response: (value: string) => void;
+  reveal: (row: number, col: number) => void;
 }
 
 export const deserializeMessage = (message: string): PlayerMessageRx | null => {
@@ -102,8 +105,12 @@ export const usePlayerSocket = ({
     [socket]
   );
 
+  const reveal = useStableCallback((row: number, col: number) =>
+    socket.send(makeRevealMessage(row, col))
+  );
+
   return React.useMemo(
-    () => ({ ...socket, buzz, wager, response }),
-    [socket, buzz, wager, response]
+    () => ({ ...socket, buzz, wager, response, reveal }),
+    [socket, buzz, wager, response, reveal]
   );
 };

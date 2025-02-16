@@ -1,3 +1,4 @@
+import { makeRevealMessage } from "PageBoard/page-board.utils";
 import {
   ChoosePlayerMessage,
   CloseBuzzersMessage,
@@ -8,6 +9,7 @@ import { deserializeMessage } from "Play/play.hooks";
 import { GameState } from "common/types/game-state.types";
 import { getGameStateFromStateMessage } from "common/types/get-game-state";
 import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
+import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
 import React from "react";
 
 export interface UseHostSocketProps {
@@ -20,6 +22,7 @@ export interface HostSocketWrapper extends SocketWrapper {
   choosePlayer: (player: string) => void;
   openBuzzers: () => void;
   closeBuzzers: () => void;
+  reveal: (row: number, col: number) => void;
 }
 
 const makePlayerCorrectMessage = (correct: boolean): string => {
@@ -95,6 +98,10 @@ export const useHostSocket = ({
     [socket]
   );
 
+  const reveal = useStableCallback((row: number, col: number) => {
+    socket.send(makeRevealMessage(row, col));
+  });
+
   return React.useMemo(
     () => ({
       ...socket,
@@ -102,7 +109,15 @@ export const useHostSocket = ({
       openBuzzers,
       closeBuzzers,
       choosePlayer,
+      reveal,
     }),
-    [socket, reportPlayerCorrect, openBuzzers, closeBuzzers, choosePlayer]
+    [
+      socket,
+      reportPlayerCorrect,
+      openBuzzers,
+      closeBuzzers,
+      choosePlayer,
+      reveal,
+    ]
   );
 };
