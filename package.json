@@ -10,6 +10,7 @@
     "@types/node": "^20.8.5",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "pluralize": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/pluralize": "^0.0.33"
   }
 }

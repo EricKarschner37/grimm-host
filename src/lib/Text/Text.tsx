@@ -5,18 +5,22 @@ import "./text.scss";
 export type TextVariant = "primary" | "secondary" | "title";
 export type TextStyle = "bold" | "italicized" | "default";
 
-export interface TextProps extends MarginProps, PaddingProps {
-  text: string;
-  size?: Size;
-  className?: string;
-  isInline?: boolean;
-  variant?: TextVariant;
-  textStyle?: TextStyle;
-}
+export type TextProps = React.PropsWithChildren<
+  MarginProps &
+    PaddingProps & {
+      text?: string;
+      size?: Size;
+      className?: string;
+      isInline?: boolean;
+      variant?: TextVariant;
+      textStyle?: TextStyle;
+    }
+>;
 
 const BLOCK = "lib_text";
 
 export const Text = ({
+  children,
   text,
   size = "md",
   className,
@@ -37,7 +41,8 @@ export const Text = ({
         className
       )}
     >
-      {text}
+      {text ?? null}
+      {children}
     </p>
   );
 };

@@ -13,18 +13,21 @@
     column-gap: var(--column-gap);
     row-gap: 8px;
     padding: 8px;
-    grid-auto-rows: 120px;
+    grid-auto-rows: 150px;
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
+      --column-count: 2;
     }
 
     @media (min-width: 992px) {
       grid-template-columns: repeat(3, 1fr);
+      --column-count: 3;
     }
 
     @media (min-width: 1200px) {
       grid-template-columns: repeat(4, 1fr);
+      --column-count: 4;
     }
   }
 

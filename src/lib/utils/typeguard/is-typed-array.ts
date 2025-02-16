@@ -1,11 +1,24 @@
 import { isArray } from "lib/utils/typeguard/is-array";
 import { isNumber, isString } from "lib/utils/typeguard/is-primitive";
 
-export const isTypedArray = <T>(
-  obj: any[],
-  validator: (item: any) => item is T
-): obj is T[] => isArray(obj) && obj.every(validator);
+export function isTypedArray<T>(
+  validator: (item: unknown) => item is T
+): (obj: unknown) => obj is T[];
+export function isTypedArray<T>(
+  validator: (item: unknown) => item is T,
+  obj: unknown
+): obj is T[];
+export function isTypedArray<T>(
+  validator: (item: any) => item is T,
+  obj?: unknown
+) {
+  if (obj) {
+    return isArray(obj) && obj.every(validator);
+  }
 
-export const isStringArray = (obj: any[]) => isTypedArray(obj, isString);
+  return (value: unknown) => Array.isArray(value) && value.every(validator);
+}
 
-export const isNumberArray = (obj: any[]) => isTypedArray(obj, isNumber);
+export const isStringArray = isTypedArray(isString);
+
+export const isNumberArray = isTypedArray(isNumber);

@@ -41,8 +41,13 @@ export const PageGames = () => {
           </Group>
           <Text text="Public Games" />
           <div className={`${BLOCK}__game-cards-grid`}>
-            {sortedGames?.map(({ created, lobbyId }) => (
-              <GameCard key={lobbyId} lobbyId={lobbyId} created={created} />
+            {sortedGames?.map(({ created, lobbyId, players }) => (
+              <GameCard
+                key={lobbyId}
+                lobbyId={lobbyId}
+                players={players}
+                created={created}
+              />
             ))}
           </div>
         </Flex>

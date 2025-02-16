@@ -11,6 +11,7 @@ export type PanelProps = React.PropsWithChildren<
     LayoutProps & {
       mode?: "light" | "dark";
       className?: string;
+      tabIndex?: number;
     }
 >;
 
@@ -18,11 +19,13 @@ export const Panel = ({
   children,
   mode = "light",
   className,
+  tabIndex,
   ...rest
 }: PanelProps) => {
   const helperClassNames = getHelperClassNames(rest);
   return (
     <div
+      tabIndex={tabIndex}
       className={classNames(
         ...helperClassNames,
         `${BLOCK}_container`,

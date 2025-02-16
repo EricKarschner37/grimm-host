@@ -1,49 +1,50 @@
+@use "src/core";
+@use "src/sizes";
+
 .page-games__game-card {
   &__details {
     visibility: hidden;
-    transition: visibility 200ms;
-  }
-
-  &__panel--absolute:hover &__details,
-  &__panel--absolute:focus-within &__details {
-    visibility: visible;
+    transition: visibility 0s 200ms;
   }
 
   &__panel {
-    position: relative;
-    width: 100%;
+    position: absolute;
     height: 100%;
-    border: none;
+    width: 100%;
+    z-index: 0;
 
-    &:hover {
-      width: 200%;
-      height: 200%;
+    transition: transform 500ms, width 500ms, height 500ms, z-index 500ms,
+      box-shadow 1s;
+
+    &:focus,
+    &:focus-within {
+      border: 1px solid #406040;
     }
 
-    &--absolute {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      z-index: 0;
+    &:hover,
+    &:focus-within,
+    &:focus,
+    &:active {
+      width: 120%;
+      height: 150%;
+      transform: translateX(-10%);
+      box-shadow: core.$box-shadow;
+      z-index: 10;
 
-      transition: width 500ms, height 500ms, z-index 1s, box-shadow 1s;
-
-      &:hover,
-      &:focus-within {
-        width: calc(200% + var(--column-gap));
-        height: 200%;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        z-index: 1;
-        transition: width 500ms, height 500ms;
+      .page-games__game-card__details {
+        visibility: visible;
       }
     }
   }
 
-  &__container:not(:last-of-type) &__panel--absolute {
-    left: 0;
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 
-  &__container:last-of-type &__panel--absolute {
-    right: 0;
+  &__player-list {
+    margin: 0;
   }
 }

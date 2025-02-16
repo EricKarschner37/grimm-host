@@ -5,11 +5,7 @@ export const makeIsShape = <T>(
 ) => {
   return (obj: any): obj is T => {
     for (const key in shape) {
-      if (!(key in obj)) {
-        return false;
-      }
-
-      if (key in shape && !shape[key]?.(obj[key])) {
+      if (!shape[key]?.(obj[key])) {
         return false;
       }
     }
