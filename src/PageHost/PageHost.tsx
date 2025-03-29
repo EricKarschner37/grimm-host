@@ -10,7 +10,6 @@ import { Text } from "lib/Text";
 import React, { ReactNode } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Clue } from "PageBoard/Clue/Clue";
-import { Spacing } from "lib/Spacing/Spacing";
 import { FlexItem } from "lib/FlexItem/FlexItem";
 import "./page-host.scss";
 
@@ -28,14 +27,16 @@ export const PageHostContent = ({
   let mainContent: JSX.Element | null = null;
   const actionTray: ReactNode[] = [];
 
-  if (gameState.type === "board") {
+  if (
+    gameState.type === "board" &&
+    gameState.bareRound.round_type === "DefaultRound"
+  ) {
     mainContent = (
       <ClientCategories
-        categories={
-          gameState.bareRound.round_type === "FinalRound"
-            ? []
-            : gameState.bareRound.categories.map(({ category }) => category)
-        }
+        canReveal
+        bareRound={gameState.bareRound}
+        cluesShown={gameState.cluesShown}
+        socket={socket}
       />
     );
   }

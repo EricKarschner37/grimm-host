@@ -5,13 +5,17 @@ import "./cost.scss";
 export interface CostProps {
   cost: string;
   onClick?: () => void;
+  className?: string;
 }
 
 const BLOCK = "page-board_cost";
 
-export const Cost = ({ cost, onClick }: CostProps) => {
+export const Cost = ({ cost, onClick, className }: CostProps) => {
   return (
-    <Square className={classNames(`${BLOCK}_container`)} onClick={onClick}>
+    <Square
+      className={classNames(`${BLOCK}_container`, className)}
+      onClick={onClick}
+    >
       ${cost}
     </Square>
   );

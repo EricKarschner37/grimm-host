@@ -37,14 +37,17 @@ const PagePlayerActiveContent = ({
 
   const canBuzz = gameState.type === "clue" && gameState.buzzersOpen;
 
-  if (gameState.type === "board") {
+  if (
+    gameState.type === "board" &&
+    gameState.bareRound.round_type === "DefaultRound"
+  ) {
+    console.log(gameState.activePlayer, username);
     mainContent = (
       <ClientCategories
-        categories={
-          gameState.bareRound.round_type === "FinalRound"
-            ? []
-            : gameState.bareRound.categories.map(({ category }) => category)
-        }
+        bareRound={gameState.bareRound}
+        cluesShown={gameState.cluesShown}
+        socket={socket}
+        canReveal={gameState.activePlayer === username}
       />
     );
   }

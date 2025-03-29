@@ -8,6 +8,7 @@ import React from "react";
 import { Square } from "common/Square/Square";
 import { Cost } from "PageBoard/Cost/Cost";
 import { Clue } from "PageBoard/Clue/Clue";
+import { isClueShown } from "lib/utils/is-clue-shown";
 
 export interface BoardProps {
   gameState: GameState;
@@ -46,7 +47,7 @@ const useBoard = ({ gameState, socket }: BoardProps) =>
       const cols = [];
 
       for (let j = 0; j < 6; j += 1) {
-        const hasBeenRevealed = gameState.cluesShown & (1 << (i * 6 + j));
+        const hasBeenRevealed = isClueShown(gameState.cluesShown, i, j);
         const cost = gameState.bareRound.categories[j].clue_costs[i];
         const element = hasBeenRevealed ? (
           <Square />
