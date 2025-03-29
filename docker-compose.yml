@@ -4,3 +4,9 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    volumes:
+      - media:/media
+
+volumes:
+  media:
+    external: true
