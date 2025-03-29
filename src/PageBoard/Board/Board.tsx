@@ -88,6 +88,7 @@ export const Board = ({ gameState, socket }: BoardProps) => {
         onClick={socket.goToResponse}
         cost={String(gameState.cost)}
         clue={gameState.clue}
+		mediaUrl={gameState.mediaUrl}
         isFullScreen
       />
     );

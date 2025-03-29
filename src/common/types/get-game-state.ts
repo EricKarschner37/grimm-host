@@ -17,6 +17,7 @@ export const getGameStateFromStateMessage = (
   cost: payload.cost,
   category: payload.category,
   clue: payload.clue,
+  mediaUrl: payload.media_url,
   response: payload.response,
   buzzersOpen: payload.buzzers_open,
   buzzedPlayer: payload.buzzed_player,

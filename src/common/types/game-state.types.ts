@@ -39,6 +39,7 @@ export interface GameState {
   cost: number;
   category: string;
   clue: string;
+  mediaUrl?: string;
   response: string;
   players: Record<string, Player>;
   cluesShown: number;
@@ -61,6 +62,7 @@ export interface StateMessage {
   cost: number;
   category: string;
   clue: string;
+  media_url?: string;
   response: string;
   players: Record<string, { name: string; balance: number }>;
   round_idx: number;

@@ -11,6 +11,7 @@ export interface ClueProps {
   isActive?: string;
   onClick?: () => void;
   isFullScreen?: boolean;
+  mediaUrl?: string;
 }
 
 const BLOCK = "page-board_clue";
@@ -23,6 +24,7 @@ export const Clue = ({
   onClick,
   isActive,
   isFullScreen = false,
+  mediaUrl,
 }: ClueProps) => {
   return (
     <Square onClick={onClick}>
@@ -30,12 +32,14 @@ export const Clue = ({
         padding={isFullScreen ? "xl" : "md"}
         direction="column"
         justify="space-between"
+		align="center"
         isFullHeight
         isFullWidth
       >
         <p>
           {category} - <span className={`${BLOCK}_cost`}>${cost}</span>
         </p>
+		{mediaUrl ? <img className={`${BLOCK}_image`} src={mediaUrl} /> : null}
         <p>{clue}</p>
         <p style={{ visibility: response ? "visible" : "hidden" }}>
           {response ?? "placeholder response"}
