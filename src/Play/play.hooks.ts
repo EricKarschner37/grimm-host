@@ -1,4 +1,5 @@
 import {
+ReportRespondedMessage,
   BuzzMessage,
   PlayerMessageRx,
   PlayerResponseMessage,
@@ -27,6 +28,8 @@ export interface PlayerSocketWrapper extends SocketWrapper {
   wager: (value: number) => void;
   response: (value: string) => void;
   reveal: (row: number, col: number) => void;
+  reportResponded: () => void;
+  correct: (correct: boolean) => void;
 }
 
 export const deserializeMessage = (message: string): PlayerMessageRx | null => {
@@ -42,7 +45,26 @@ const BUZZ_MESSAGE: BuzzMessage = {
   request: "buzz",
 };
 
+const REPORT_RESPONDED_MESSAGE: ReportRespondedMessage = {
+	request: "responded",
+}
+
 const BUZZ_MESSAGE_STRING: string = JSON.stringify(BUZZ_MESSAGE);
+
+interface CorrectMessage {
+	request: "correct";
+	correct: boolean;
+}
+
+const REPORT_RESPONDED_MESSAGE_STRING: string = JSON.stringify(REPORT_RESPONDED_MESSAGE);
+
+const makeCorrectMessage = (correct: boolean) => {
+	const message: CorrectMessage = {
+		request: "correct",
+		correct,
+	}
+	return JSON.stringify(message);
+}
 
 const makeWagerMessage = (wager: number) => {
   const message: WagerMessage = {
@@ -68,11 +90,11 @@ export const usePlayerSocket = ({
   const socket = useSocket({
     path: `/api/ws/${lobbyId}/buzzer`,
     onMessage: (e: MessageEvent) => {
-      console.log("message in usePlayerSocket");
       const message = deserializeMessage(e.data);
       if (!message) {
         return;
       }
+      console.log(message);
 
       if (message.message === "state") {
         console.log("state message");
@@ -109,8 +131,12 @@ export const usePlayerSocket = ({
     socket.send(makeRevealMessage(row, col))
   );
 
+  const reportResponded = useStableCallback(() => socket.send(REPORT_RESPONDED_MESSAGE_STRING));
+
+  const correct = useStableCallback((correct: boolean) => socket.send(makeCorrectMessage(correct)));
+
   return React.useMemo(
-    () => ({ ...socket, buzz, wager, response, reveal }),
-    [socket, buzz, wager, response, reveal]
+    () => ({ ...socket, buzz, wager, response, reveal, reportResponded, correct }),
+    [socket, buzz, wager, response, reveal, reportResponded, correct]
   );
 };

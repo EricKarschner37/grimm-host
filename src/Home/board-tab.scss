@@ -1,0 +1,22 @@
+.home__board-tab {
+  &__container {
+    display: grid;
+    grid-template-columns: fit-content 1fr;
+    text-align: initial;
+    padding: 8px;
+    gap: 8px;
+    max-width: 400px;
+  }
+
+  &__section-header {
+    grid-column: span 2;
+  }
+
+  &__game-id-input {
+    max-width: 16ch;
+  }
+
+  &__submit-button {
+    grid-column: 2;
+  }
+}

@@ -14,6 +14,7 @@ export interface ButtonProps extends PaddingProps, MarginProps {
   variant?: Variant;
   size?: Size;
   icon?: Icon;
+  className?: string;
 }
 
 const BLOCK = "lib_button";
@@ -34,6 +35,7 @@ export const Button = ({
   icon,
   size = "md",
   variant = "default",
+  className,
 }: ButtonProps) => {
   const helperClassNames = getHelperClassNames({
     padding,
@@ -53,6 +55,7 @@ export const Button = ({
       className={classNames(
         BLOCK,
         `${BLOCK}_variant-${variant}`,
+	className,
         ...helperClassNames
       )}
       onClick={onClick}

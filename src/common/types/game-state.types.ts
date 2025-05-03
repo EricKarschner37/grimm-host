@@ -69,3 +69,5 @@ export interface StateMessage {
   clues_shown: number;
   bare_round: BareRound;
 }
+
+export type GameMode = 'host' | 'hostless';

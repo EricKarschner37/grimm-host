@@ -65,7 +65,7 @@ export const Play = () => {
 
   return (
     <>
-      <PagePlayerActive username={username} lobbyId={lobbyId} />
+      <PagePlayerActive username={username} lobbyId={lobbyId} gameMode={data?.mode}/>
     </>
   );
 };

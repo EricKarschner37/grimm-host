@@ -1,9 +1,12 @@
 import { useQuery } from "lib/utils/hooks/use-query";
 import { isStringArray } from "lib/utils/typeguard/is-typed-array";
+import { isString } from "../typeguard/is-primitive";
+import { GameMode } from "common/types/game-state.types";
 
 export interface GetGameResult {
   players: string[];
   categories: string[];
+  mode: GameMode;
 }
 
 export interface GetGameArgs {
@@ -22,8 +25,9 @@ const ENDPOINT = "/api/game/";
 const validator = (obj: any): obj is GetGameResult =>
   "categories" in obj &&
   "players" in obj &&
+  "mode" in obj &&
   isStringArray(obj.categories) &&
-  isStringArray(obj.players);
+  isStringArray(obj.players) && isString(obj.mode);
 
 export const useGetGame = ({ lobbyId, enabled }: GetGameArgs) => {
   return useQuery<GetGameResult>({

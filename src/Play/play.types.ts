@@ -16,6 +16,10 @@ export interface BuzzMessage {
   request: "buzz";
 }
 
+export interface ReportRespondedMessage {
+	request: "responded";
+}
+
 export interface WagerMessage {
   request: "wager";
   amount: number;

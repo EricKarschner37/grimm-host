@@ -1,6 +1,6 @@
 import { Text } from "lib/Text/Text";
 import { PlayerSocketWrapper, usePlayerSocket } from "Play/play.hooks";
-import { GameState } from "common/types/game-state.types";
+import { GameMode, GameState } from "common/types/game-state.types";
 import { Button } from "lib/Button/Button";
 import { Suspender } from "lib/Suspender";
 import React, { ReactNode } from "react";
@@ -15,12 +15,14 @@ import { FlexItem } from "lib/FlexItem/FlexItem";
 export interface PagePlayerActiveProps {
   username: string;
   lobbyId: string;
+  gameMode?: GameMode;
 }
 
 interface PagePlayerActiveContentProps {
   username: string;
   socket: PlayerSocketWrapper & { readyState: WebSocket["OPEN"] };
   gameState: GameState;
+  gameMode: GameMode;
 }
 
 const BLOCK = "page-player-active";
@@ -29,6 +31,7 @@ const PagePlayerActiveContent = ({
   username,
   socket,
   gameState,
+  gameMode,
 }: PagePlayerActiveContentProps) => {
   let mainContent: ReactNode | null = null;
   const actionTray: ReactNode[] = [];
@@ -52,7 +55,7 @@ const PagePlayerActiveContent = ({
     );
   }
 
-  if (gameState.type === "response") {
+  if (gameState.type === "response" || gameState.respondedPlayers.includes(username)) {
     mainContent = (
       <Clue
         category={gameState.category}
@@ -75,6 +78,12 @@ const PagePlayerActiveContent = ({
   if (gameState.type === "clue") {
     if (gameState.buzzedPlayer === username) {
       actionTray.push(<Text size="lg" text="Buzzed in!" />);
+      if (gameMode === "hostless" && !gameState.respondedPlayers.includes(username)) {
+	actionTray.push(<Button label="Reveal Answer" onClick={socket.reportResponded} />);
+      } else if (gameMode === "hostless") {
+	actionTray.push(<Button label="Incorrect" onClick={() => socket.correct(false)} />);
+	actionTray.push(<Button label="Correct" onClick={() => socket.correct(true)} />);
+      }
     } else if (gameState.buzzedPlayer) {
       actionTray.push(<Text text={`${gameState.buzzedPlayer} is buzzed in`} />);
     } else {
@@ -142,7 +151,7 @@ const PagePlayerActiveContent = ({
       <FlexItem className={`${BLOCK}_main-content-container`} basis={0} grow>
         {mainContent}
       </FlexItem>
-      <Flex gap="4px" justify="center" direction="row" marginBottom="md">
+      <Flex gap="4px" justify="center" align="center" direction="row" marginBottom="md">
         {actionTray}
       </Flex>
     </Flex>
@@ -152,6 +161,7 @@ const PagePlayerActiveContent = ({
 export const PagePlayerActive = ({
   username,
   lobbyId,
+  gameMode
 }: PagePlayerActiveProps) => {
   const [gameState, setGameState] = React.useState<GameState | null>(null);
   const socket = usePlayerSocket({ username, lobbyId, setGameState });
@@ -159,10 +169,10 @@ export const PagePlayerActive = ({
   return (
     <Suspender
       shouldRender={(props): props is PagePlayerActiveContentProps =>
-        props.gameState !== null
+        props.gameState !== null && props.gameMode != null
       }
       renderEmpty={() => <p>Connecting...</p>}
-      props={{ username, socket, gameState }}
+      props={{ username, socket, gameState, gameMode }}
       render={PagePlayerActiveContent}
     />
   );

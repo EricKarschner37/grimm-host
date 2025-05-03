@@ -8,6 +8,7 @@ import { HostSocketWrapper } from "PageHost/page-host.hooks";
 import { isClueShown } from "lib/utils/is-clue-shown";
 import { BareDefaultRound } from "common/types/game-state.types";
 import { LeftArrowIcon } from "lib/icons/LeftArrowIcon";
+import { FlexItem } from "lib/FlexItem/FlexItem";
 
 export interface ClientCategoriesProps {
   bareRound: BareDefaultRound;
@@ -33,7 +34,8 @@ export const ClientCategories = ({
   >(null);
   if (selectedCategoryIndex) {
     return (
-      <Flex isFullWidth direction="column" align="stretch">
+      <Flex isFullWidth direction="column" align="stretch" isFullHeight>
+      <FlexItem grow>
         <Square
           className={`${BLOCK}_square`}
           onClick={() => setSelectedCategoryIndex(null)}
@@ -49,8 +51,11 @@ export const ClientCategories = ({
             <div />
           </Flex>
         </Square>
+	</FlexItem>
         {bareRound.categories[selectedCategoryIndex].clue_costs.map((cost, i) =>
-          isClueShown(cluesShown, i, selectedCategoryIndex) ? (
+	
+	<FlexItem grow key={cost}>
+	{isClueShown(cluesShown, i, selectedCategoryIndex) ? (
             <Square className={`${BLOCK}_square`} />
           ) : (
             <Cost
@@ -64,7 +69,8 @@ export const ClientCategories = ({
               }
               className={`${BLOCK}_square`}
             />
-          )
+          )}
+	  </FlexItem>
         )}
       </Flex>
     );
