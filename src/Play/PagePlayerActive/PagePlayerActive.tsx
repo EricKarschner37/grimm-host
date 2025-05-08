@@ -40,8 +40,6 @@ const PagePlayerActiveContent = ({
 
   const canBuzz = gameState.type === "clue" && gameState.buzzersOpen;
 
-  console.log(gameState);
-
   if (
     gameState.type === "board" &&
     gameState.bareRound.round_type === "DefaultRound"
@@ -81,18 +79,6 @@ const PagePlayerActiveContent = ({
       }
     } else if (gameState.buzzedPlayer) {
       actionTray.push(<Text text={`${gameState.buzzedPlayer} is buzzed in`} />);
-    } else {
-      actionTray.push(
-        <>
-          <Button
-            size="xl"
-            label="Buzz"
-            variant={canBuzz ? "primary" : "default"}
-            marginBottom="lg"
-            onClick={socket.buzz}
-          />
-        </>
-      );
     }
   }
 
@@ -146,9 +132,18 @@ const PagePlayerActiveContent = ({
       <FlexItem className={`${BLOCK}_main-content-container`} basis={0} grow>
         {mainContent}
       </FlexItem>
+	  <Flex gap="4px" justify="center" align="center" direction="column" isFullWidth>
       <Flex gap="4px" justify="center" align="center" direction="row" marginBottom="md">
         {actionTray}
       </Flex>
+          <Button
+            size="xl"
+            label="Buzz"
+            variant={canBuzz ? "primary" : "default"}
+            marginBottom="lg"
+            onClick={socket.buzz}
+          />
+		  </Flex>
     </Flex>
   );
 };
