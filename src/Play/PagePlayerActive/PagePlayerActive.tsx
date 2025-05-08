@@ -40,6 +40,8 @@ const PagePlayerActiveContent = ({
 
   const canBuzz = gameState.type === "clue" && gameState.buzzersOpen;
 
+  console.log(gameState);
+
   if (
     gameState.type === "board" &&
     gameState.bareRound.round_type === "DefaultRound"
@@ -55,26 +57,19 @@ const PagePlayerActiveContent = ({
     );
   }
 
-  if (gameState.type === "response" || gameState.respondedPlayers.includes(username)) {
+  if (gameState.type === "response" || gameState.type === "final-clue" || gameState.type === "clue") {
+	const shouldShowResponse = gameState.type === "response" || gameState.respondedPlayers.includes(username);
+
     mainContent = (
       <Clue
         category={gameState.category}
         cost={String(gameState.cost)}
         clue={gameState.clue}
-        response={gameState.response}
+        response={shouldShowResponse ? gameState.response : undefined}
       />
     );
   }
 
-  if (gameState.type === "clue" || gameState.type === "final-clue") {
-    mainContent = (
-      <Clue
-        category={gameState.category}
-        cost={String(gameState.cost)}
-        clue={gameState.clue}
-      />
-    );
-  }
   if (gameState.type === "clue") {
     if (gameState.buzzedPlayer === username) {
       actionTray.push(<Text size="lg" text="Buzzed in!" />);
