@@ -32,7 +32,7 @@ export const ClientCategories = ({
   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState<
     number | null
   >(null);
-  if (selectedCategoryIndex) {
+  if (selectedCategoryIndex != null) {
     return (
       <Flex isFullWidth direction="column" align="stretch" isFullHeight>
       <FlexItem grow>
