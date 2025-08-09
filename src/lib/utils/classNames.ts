@@ -22,6 +22,8 @@ export const getHelperClassNames = ({
   paddingRight,
   paddingTop,
   paddingBottom,
+  paddingX,
+  paddingY,
   margin,
   marginTop,
   marginLeft,
@@ -59,20 +61,20 @@ export const getHelperClassNames = ({
     result.push(`padding-${padding}`);
   }
 
-  if (paddingTop) {
-    result.push(`paddingTop-${paddingTop}`);
+  if (paddingTop || paddingY) {
+    result.push(`paddingTop-${paddingTop || paddingY}`);
   }
 
-  if (paddingBottom) {
-    result.push(`paddingBottom-${paddingBottom}`);
+  if (paddingBottom || paddingY) {
+    result.push(`paddingBottom-${paddingBottom || paddingY}`);
   }
 
-  if (paddingRight) {
-    result.push(`paddingRight-${paddingRight}`);
+  if (paddingRight || paddingX) {
+    result.push(`paddingRight-${paddingRight || paddingX}`);
   }
 
-  if (paddingLeft) {
-    result.push(`paddingLeft-${paddingLeft}`);
+  if (paddingLeft || paddingX) {
+    result.push(`paddingLeft-${paddingLeft || paddingX}`);
   }
 
   if (fontSize) {

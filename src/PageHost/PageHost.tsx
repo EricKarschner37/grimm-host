@@ -1,4 +1,5 @@
 import { PlayerSelector } from "PageHost/PlayerSelector";
+import { Header } from "lib/Header/Header";
 import { HostSocketWrapper, useHostSocket } from "PageHost/page-host.hooks";
 import { ClientCategories } from "common/ClientCategories/ClientCategories";
 import { GameState } from "common/types/game-state.types";
@@ -99,14 +100,31 @@ export const PageHostContent = ({
   }
 
   return (
-    <Flex isFullHeight isFullWidth direction="column" align="center">
+    <Flex isFullHeight isFullWidth direction="column" align="stretch">
+      <Flex isFullWidth paddingX="md">
+	    <Header>
+		<Flex align="center" isFullWidth justify="space-between">
+		  <Text
+		    text="Jeopardy!"
+			size="lg"
+		  />
+		  <Text
+		    text="Host"
+			size="lg"
+		  />
+		  <div />
+		</Flex>
+		</Header>
+      </Flex>
       <FlexItem basis={0} grow className={`${BLOCK}-main-content-container`}>
         {mainContent}
       </FlexItem>
       {gameState.buzzedPlayer && (
-        <Text text={`${gameState.buzzedPlayer} is buzzed in`} />
+		<Flex justify="center" align="center" isFullWidth>
+				<Text text={`${gameState.buzzedPlayer} is buzzed in`} />
+		</Flex>
       )}
-      <Flex justify="center" gap="6em" align="center" marginBottom="lg">
+      <Flex justify="center" gap="6em" align="center" marginBottom="lg" isFullWidth>
         {actionTray}
       </Flex>
     </Flex>

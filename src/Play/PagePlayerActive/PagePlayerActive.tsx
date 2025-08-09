@@ -1,4 +1,5 @@
 import { Text } from "lib/Text/Text";
+import { Header } from "lib/Header/Header";
 import { PlayerSocketWrapper, usePlayerSocket } from "Play/play.hooks";
 import { GameMode, GameState } from "common/types/game-state.types";
 import { Button } from "lib/Button/Button";
@@ -109,31 +110,32 @@ const PagePlayerActiveContent = ({
 
   return (
     <Flex isFullHeight isFullWidth direction="column" align="stretch">
-      <Flex
-        justify="space-between"
-        align="center"
-        className={`${BLOCK}_header`}
-        isFullWidth
-      >
-        <Text
-          className={`${BLOCK}_header_left`}
-          marginLeft="md"
-          text="Jeopardy!"
-          size="lg"
-        />
-        <Text size="lg" text={username} />
-        <Text
-          className={`${BLOCK}_header_right`}
-          marginRight="md"
-          size="lg"
-          text={`$${balance}`}
-        />
-      </Flex>
+      <Header>
+        <Flex
+          justify="space-between"
+          align="center"
+          className={`${BLOCK}_header`}
+          isFullWidth
+	      paddingX="md"
+        >
+          <Text
+            className={`${BLOCK}_header_left`}
+            text="Jeopardy!"
+            size="lg"
+          />
+          <Text size="lg" text={username} />
+          <Text
+            className={`${BLOCK}_header_right`}
+            size="lg"
+            text={`$${balance}`}
+          />
+        </Flex>
+	  </Header>
       <FlexItem className={`${BLOCK}_main-content-container`} basis={0} grow>
         {mainContent}
       </FlexItem>
 	  <Flex gap="4px" justify="center" align="center" direction="column" isFullWidth>
-      <Flex gap="4px" justify="center" align="center" direction="row" marginBottom="md">
+      <Flex gap="4px" justify="center" align="center" direction="row" marginBottom="md" isFullWidth>
         {actionTray}
       </Flex>
           <Button

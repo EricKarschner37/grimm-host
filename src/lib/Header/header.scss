@@ -1,0 +1,17 @@
+@use "src/sizes";
+
+.lib__header {
+    position: sticky;
+    top: 0;
+    height: 50px;
+
+    background-color: lightgray;
+    box-shadow: 0px 3px gray;
+    margin: 0;
+    text-align: center;
+    margin-bottom: sizes.$md;
+
+    * {
+      color: black;
+    }
+}

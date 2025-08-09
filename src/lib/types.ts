@@ -14,6 +14,8 @@ export interface PaddingProps {
   paddingRight?: Size;
   paddingTop?: Size;
   paddingBottom?: Size;
+  paddingX?: Size;
+  paddingY?: Size;
 }
 
 export interface MarginProps {

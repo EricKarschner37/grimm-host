@@ -58,7 +58,7 @@ export const Wager = ({
           max={maxWager}
           value={wagerValue}
           onValueChange={setWagerValue}
-          increment={1}
+          increment={10}
         />
       </div>
       <Button
