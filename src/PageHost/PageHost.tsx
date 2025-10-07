@@ -56,6 +56,15 @@ export const PageHostContent = ({
       />
     );
 
+	if (gameState.type === "final-clue") {
+			actionTray.push(
+			  <Button
+			    label="Time's up!"
+			    variant="error"
+			    onClick={() => socket.forceContinue()} />
+			)
+	}
+
     if (gameState.type === "clue") {
       if (!gameState.buzzedPlayer) {
         actionTray.push(
@@ -97,6 +106,7 @@ export const PageHostContent = ({
     mainContent = (
       <Clue category={gameState.category} cost="???" clue="Final Jeopardy!" />
     );
+	actionTray.push(<Button label="End Wagers" variant="error" onClick={() => socket.forceContinue()} />)
   }
 
   return (

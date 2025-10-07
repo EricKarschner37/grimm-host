@@ -15,3 +15,7 @@ export interface ChoosePlayerMessage {
   request: "player";
   player: string;
 }
+
+export interface ForceContinueMessage {
+  request: "continue";
+}

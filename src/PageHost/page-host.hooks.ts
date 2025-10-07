@@ -4,6 +4,7 @@ import {
   CloseBuzzersMessage,
   OpenBuzzersMessage,
   ReportPlayerCorrectMessage,
+  ForceContinueMessage,
 } from "PageHost/page-host.types";
 import { deserializeMessage } from "Play/play.hooks";
 import { GameState } from "common/types/game-state.types";
@@ -23,6 +24,7 @@ export interface HostSocketWrapper extends SocketWrapper {
   openBuzzers: () => void;
   closeBuzzers: () => void;
   reveal: (row: number, col: number) => void;
+  forceContinue: () => void;
 }
 
 const makePlayerCorrectMessage = (correct: boolean): string => {
@@ -54,6 +56,12 @@ const CLOSE_MESSAGE: CloseBuzzersMessage = {
 };
 
 const CLOSE_MESSAGE_STRING = JSON.stringify(CLOSE_MESSAGE);
+
+const CONTINUE_MESSAGE: ForceContinueMessage = {
+  request: "continue",
+}
+
+const CONTINUE_MESSAGE_STRING = JSON.stringify(CONTINUE_MESSAGE);
 
 export const useHostSocket = ({
   lobbyId,
@@ -102,6 +110,10 @@ export const useHostSocket = ({
     socket.send(makeRevealMessage(row, col));
   });
 
+  const forceContinue = useStableCallback(() => {
+    socket.send(CONTINUE_MESSAGE_STRING);
+  });
+
   return React.useMemo(
     () => ({
       ...socket,
@@ -110,6 +122,7 @@ export const useHostSocket = ({
       closeBuzzers,
       choosePlayer,
       reveal,
+	  forceContinue,
     }),
     [
       socket,
@@ -118,6 +131,7 @@ export const useHostSocket = ({
       closeBuzzers,
       choosePlayer,
       reveal,
+	  forceContinue,
     ]
   );
 };
