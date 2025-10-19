@@ -33,7 +33,8 @@ export const Text = ({
         ...helperClassNames,
         variantClassName,
         styleClassName,
-        className
+        className,
+		BLOCK,
       )}
     >
       {text}

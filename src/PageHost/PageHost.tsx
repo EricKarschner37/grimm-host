@@ -1,4 +1,5 @@
 import { PlayerSelector } from "PageHost/PlayerSelector";
+import { SocketStateIndicator } from 'common/SocketStateIndicator';
 import { Header } from "lib/Header/Header";
 import { HostSocketWrapper, useHostSocket } from "PageHost/page-host.hooks";
 import { ClientCategories } from "common/ClientCategories/ClientCategories";
@@ -113,16 +114,18 @@ export const PageHostContent = ({
     <Flex isFullHeight isFullWidth direction="column" align="stretch">
       <Flex isFullWidth paddingX="md">
 	    <Header>
-		<Flex align="center" isFullWidth justify="space-between">
+		<Flex align="center" isFullWidth >
 		  <Text
 		    text="Jeopardy!"
 			size="lg"
 		  />
+		  <FlexItem basis={0} grow />
 		  <Text
 		    text="Host"
 			size="lg"
 		  />
-		  <div />
+		  <SocketStateIndicator readyState={socket.readyState} />
+		  <FlexItem basis={0} grow />
 		</Flex>
 		</Header>
       </Flex>

@@ -1,9 +1,9 @@
 import React from "react";
 
-export const useStableCallback = <TFunc extends (...args: any) => any>(
-  callback: TFunc
-): TFunc => {
+export const useStableCallback = <TArgs extends unknown[], TReturn>(
+  callback: (...args: TArgs) => TReturn
+): ((...args: TArgs) => TReturn) => {
   const funcRef = React.useRef(callback);
   funcRef.current = callback;
-  return callback;
+  return React.useCallback((...args: TArgs) => funcRef.current(...args), []);
 };

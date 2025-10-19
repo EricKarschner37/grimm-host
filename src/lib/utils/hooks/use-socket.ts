@@ -1,3 +1,6 @@
+import { useInterval } from "lib/utils/hooks/use-interval";
+import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
+import { useTimeout } from "lib/utils/hooks/use-timeout";
 import React from "react";
 import { match } from "ts-pattern";
 
@@ -12,17 +15,22 @@ export interface UseSocketProps {
   enabled?: boolean;
 }
 
-export interface SocketWrapper {
-  send: (message: string) => void;
-  close: () => void;
-  readyState:
+export type ReadyState = 
     | WebSocket["CONNECTING"]
     | WebSocket["OPEN"]
     | WebSocket["CLOSING"]
     | WebSocket["CLOSED"];
+
+export interface SocketWrapper {
+  send: (message: string) => void;
+  close: () => void;
+  readyState: ReadyState;
+  retry: () => void;
 }
 
 const BASE_URL = process.env.REACT_APP_WS_URL;
+
+const BASE_RETRY_TIMEOUT = 1000;
 
 export const useSocket = ({
   path,
@@ -41,12 +49,46 @@ export const useSocket = ({
     [enabled, userHasClosed]
   );
 
+  const [readyState, setReadyState] = React.useState<ReadyState>(innerEnabled ? WebSocket.CONNECTING : WebSocket.CLOSED);
+  const [retriesCount, setRetriesCount] = React.useState(0);
+
   React.useEffect(() => {
     return () => socketRef.current?.close();
   }, []);
 
+  const refreshReadyState = useStableCallback(() => {
+	const readyState = getReadyState(socketRef.current?.readyState, innerEnabled)
+	setReadyState(readyState);
+  });
+
+  useInterval(refreshReadyState, 5000);
+
+  const retry = useStableCallback(() => {
+	  setRetriesCount(prev => prev + 1);
+  })
+  useTimeout(retry, BASE_RETRY_TIMEOUT * 2**retriesCount, {enabled: readyState === WebSocket.CLOSED && !userHasClosed});
+
+  const send = useStableCallback((message: string) => {
+      if (
+        !socketRef.current ||
+        socketRef.current.readyState !== WebSocket.OPEN
+      ) {
+        messageQueueRef.current.push(message);
+        console.log("queueing message: ", message);
+      } else {
+        socketRef.current.send(message);
+        console.log("sending message: ", message);
+      }
+    });
+
+	const close = useStableCallback(() => {
+      socketRef.current?.close();
+      setUserHasClosed(true);
+    });
+  
   React.useEffect(() => {
     if (!innerEnabled) {
+	  setReadyState(WebSocket.CLOSED);
       return;
     }
     const newSocket = new WebSocket(`${BASE_URL}${path}`);
@@ -59,6 +101,8 @@ export const useSocket = ({
       if (onOpen) {
         onOpen(e);
       }
+	  setReadyState(getReadyState(newSocket.readyState, innerEnabled));
+	  setRetriesCount(0);
     };
 
     newSocket.onclose = (e) => {
@@ -68,6 +112,7 @@ export const useSocket = ({
       if (onClose) {
         onClose(e);
       }
+	  setReadyState(getReadyState(newSocket.readyState, innerEnabled));
     };
 
     newSocket.onerror = (e) => {
@@ -77,6 +122,7 @@ export const useSocket = ({
       if (onError) {
         onError(e);
       }
+	  setReadyState(getReadyState(newSocket.readyState, innerEnabled));
     };
 
     newSocket.onmessage = (e) => {
@@ -86,49 +132,33 @@ export const useSocket = ({
       if (onMessage) {
         onMessage(e);
       }
+	  setReadyState(getReadyState(newSocket.readyState, innerEnabled));
     };
 
     socketRef.current = newSocket;
+	setReadyState(getReadyState(newSocket.readyState, innerEnabled));
     // We don't want a new socket every time one of these event handlers changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [path]);
+  }, [path, retriesCount]);
+
 
   return React.useMemo<SocketWrapper>(() => {
-    const send = (message: string) => {
-      if (
-        !socketRef.current ||
-        socketRef.current.readyState !== WebSocket.OPEN
-      ) {
-        messageQueueRef.current.push(message);
-        console.log("queueing message: ", message);
-      } else {
-        socketRef.current.send(message);
-        console.log("sending message: ", message);
-      }
-    };
-
-    const close = () => {
-      socketRef.current?.close();
-      setUserHasClosed(true);
-    };
-
-    const readyState = socketRef.current
-      ? match(socketRef.current.readyState)
-          .with(WebSocket.CONNECTING, () => WebSocket.CONNECTING)
-          .with(WebSocket.OPEN, () => WebSocket.OPEN)
-          .with(WebSocket.CLOSING, () => WebSocket.CLOSING)
-          .with(WebSocket.CLOSED, () => WebSocket.CLOSED)
-          .otherwise(() =>
-            innerEnabled ? WebSocket.CONNECTING : WebSocket.CLOSED
-          )
-      : innerEnabled
-      ? WebSocket.CONNECTING
-      : WebSocket.CLOSED;
-
     return {
       send,
       close,
       readyState,
+	  retry,
     } satisfies SocketWrapper;
-  }, [innerEnabled]);
+  }, [innerEnabled, send, close, readyState, retry]);
 };
+
+function getReadyState(socketReadyState: number | undefined, innerEnabled: boolean): ReadyState {
+	return match(socketReadyState)
+    	.with(WebSocket.CONNECTING, () => WebSocket.CONNECTING)
+    	.with(WebSocket.OPEN, () => WebSocket.OPEN)
+    	.with(WebSocket.CLOSING, () => WebSocket.CLOSING)
+    	.with(WebSocket.CLOSED, () => WebSocket.CLOSED)
+    	.otherwise(() =>
+    	  innerEnabled ? WebSocket.CONNECTING : WebSocket.CLOSED
+    	)
+}

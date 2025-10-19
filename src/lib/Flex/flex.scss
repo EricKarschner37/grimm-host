@@ -1,4 +1,8 @@
 .lib_flex {
   display: flex;
   box-sizing: border-box;
+
+  & * {
+    flex-grow: 0;
+  }
 }

@@ -1,0 +1,13 @@
+@keyframes spin {
+  0% { transform: rotate(0.25turn) }
+  15% { transform: rotate(0.5turn) }
+  30% { transform: rotate(0.75turn) }
+  100% { transform: rotate(1.25turn) }
+}
+
+.lib__loading-indicator {
+	&__arc {
+      transform-origin: center;
+      animation: 1s linear spin 0s infinite;
+    }
+  }

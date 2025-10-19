@@ -2,6 +2,7 @@ import { Text } from "lib/Text/Text";
 import { Header } from "lib/Header/Header";
 import { PlayerSocketWrapper, usePlayerSocket } from "Play/play.hooks";
 import { GameMode, GameState } from "common/types/game-state.types";
+import { SocketStateIndicator } from 'common/SocketStateIndicator';
 import { Button } from "lib/Button/Button";
 import { Suspender } from "lib/Suspender";
 import React, { ReactNode } from "react";
@@ -21,7 +22,7 @@ export interface PagePlayerActiveProps {
 
 interface PagePlayerActiveContentProps {
   username: string;
-  socket: PlayerSocketWrapper & { readyState: WebSocket["OPEN"] };
+  socket: PlayerSocketWrapper;
   gameState: GameState;
   gameMode: GameMode;
 }
@@ -112,7 +113,6 @@ const PagePlayerActiveContent = ({
     <Flex isFullHeight isFullWidth direction="column" align="stretch">
       <Header>
         <Flex
-          justify="space-between"
           align="center"
           className={`${BLOCK}_header`}
           isFullWidth
@@ -123,7 +123,10 @@ const PagePlayerActiveContent = ({
             text="Jeopardy!"
             size="lg"
           />
-          <Text size="lg" text={username} />
+		  <FlexItem basis={0} grow />
+          <Text size="lg" text={username} marginRight="sm" />
+		  <SocketStateIndicator readyState={socket.readyState} />
+		  <FlexItem basis={0} grow />
           <Text
             className={`${BLOCK}_header_right`}
             size="lg"
