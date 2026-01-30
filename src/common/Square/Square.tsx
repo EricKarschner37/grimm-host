@@ -1,7 +1,7 @@
-import { classNames } from "lib/utils/classNames";
+import { classNames } from "../../lib/utils/classNames";
 
 import "./square.scss";
-import { Flex } from "lib/Flex";
+import { Flex } from "../../lib/Flex";
 
 const BLOCK = "common_square";
 

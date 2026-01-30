@@ -1,10 +1,10 @@
-import { Flex } from "lib/Flex";
-import { PlayTab } from "Home/PlayTab/PlayTab";
+import { Flex } from "../lib/Flex";
+import { PlayTab } from "./PlayTab/PlayTab";
 import { useNavigate } from "react-router-dom";
-import { BoardTab } from "Home/BoardTab";
-import { HostTab } from "Home/HostTab";
-import { TabList } from "lib/TabList/TabList";
-import { Panel } from "lib/Panel/Panel";
+import { BoardTab } from "./BoardTab";
+import { HostTab } from "./HostTab";
+import { TabList } from "../lib/TabList/TabList";
+import { Panel } from "../lib/Panel/Panel";
 
 type Tab = "play" | "host" | "board";
 

@@ -1,5 +1,5 @@
-import { Flex } from "lib/Flex";
-import { Text } from "lib/Text";
+import { Flex } from "../Flex";
+import { Text } from "../Text";
 import React from "react";
 
 export interface EmptyStateProps {

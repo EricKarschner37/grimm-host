@@ -1,6 +1,6 @@
 import React from "react";
 import "./switch-buttons.scss";
-import { classNames } from "lib/utils/classNames";
+import { classNames } from "../utils/classNames";
 
 export interface SwitchButtonsProps<Opt> {
   options: Opt[];

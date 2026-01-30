@@ -1,4 +1,4 @@
-import { classNames } from "lib/utils/classNames";
+import { classNames } from "../utils/classNames";
 import "./flex-item.scss";
 
 export type FlexItemProps = React.PropsWithChildren<{

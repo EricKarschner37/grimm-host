@@ -1,4 +1,4 @@
-import { LayoutProps, MarginProps, PaddingProps, Size } from "lib/types";
+import { LayoutProps, MarginProps, PaddingProps, Size } from "../types";
 
 type Name =
   | string

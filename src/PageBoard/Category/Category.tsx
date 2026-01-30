@@ -1,5 +1,5 @@
 import "./category.scss";
-import { Square } from "common/Square/Square";
+import { Square } from "../../common/Square/Square";
 
 const BLOCK = "page-board_category";
 

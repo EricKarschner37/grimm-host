@@ -1,6 +1,6 @@
-import { Button } from "lib/Button/Button";
-import { Flex } from "lib/Flex";
-import { Input } from "lib/Input/Input";
+import { Button } from "../lib/Button/Button";
+import { Flex } from "../lib/Flex";
+import { Input } from "../lib/Input/Input";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 

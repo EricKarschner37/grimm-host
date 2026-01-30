@@ -1,10 +1,10 @@
-import { PlayerSocketWrapper } from "Play/play.hooks";
-import { GameState } from "common/types/game-state.types";
-import { Button } from "lib/Button/Button";
-import { Flex } from "lib/Flex";
-import { Input } from "lib/Input/Input";
-import { Slider } from "lib/Slider/Slider";
-import { Text } from "lib/Text";
+import { PlayerSocketWrapper } from "../play.hooks";
+import { GameState } from "../../common/types/game-state.types";
+import { Button } from "../../lib/Button/Button";
+import { Flex } from "../../lib/Flex";
+import { Input } from "../../lib/Input/Input";
+import { Slider } from "../../lib/Slider/Slider";
+import { Text } from "../../lib/Text";
 import React from "react";
 
 const validateInProgress = (value: string) => {

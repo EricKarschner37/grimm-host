@@ -1,7 +1,7 @@
-import { Square } from "common/Square/Square";
+import { Square } from "../../common/Square/Square";
 import "./clue.scss";
-import { Flex } from "lib/Flex";
-import { FlexItem } from "lib/FlexItem/FlexItem";
+import { Flex } from "../../lib/Flex";
+import { FlexItem } from "../../lib/FlexItem/FlexItem";
 
 export interface ClueProps {
   category: string;

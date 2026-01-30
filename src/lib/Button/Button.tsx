@@ -1,12 +1,12 @@
-import { MarginProps, PaddingProps, Size, Variant } from "lib/types";
+import { MarginProps, PaddingProps, Size, Variant } from "../types";
 import "./button.scss";
 import {
   classNames,
   getHelperClassNames,
   getSizeDown,
-} from "lib/utils/classNames";
-import { Icon } from "lib/icons/icons-types";
-import { Flex } from "lib/Flex";
+} from "../utils/classNames";
+import { Icon } from "../icons/icons-types";
+import { Flex } from "../Flex";
 
 export interface ButtonProps extends PaddingProps, MarginProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

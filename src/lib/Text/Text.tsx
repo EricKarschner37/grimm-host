@@ -1,5 +1,5 @@
-import { MarginProps, PaddingProps, Size } from "lib/types";
-import { classNames, getHelperClassNames } from "lib/utils/classNames";
+import { MarginProps, PaddingProps, Size } from "../types";
+import { classNames, getHelperClassNames } from "../utils/classNames";
 import "./text.scss";
 
 export type TextVariant = "primary" | "secondary" | "title";

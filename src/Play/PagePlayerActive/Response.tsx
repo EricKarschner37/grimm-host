@@ -1,8 +1,8 @@
-import { PlayerSocketWrapper } from "Play/play.hooks";
-import { GameState } from "common/types/game-state.types";
-import { Button } from "lib/Button/Button";
-import { Input } from "lib/Input/Input";
-import { Text } from "lib/Text";
+import { PlayerSocketWrapper } from "../play.hooks";
+import { GameState } from "../../common/types/game-state.types";
+import { Button } from "../../lib/Button/Button";
+import { Input } from "../../lib/Input/Input";
+import { Text } from "../../lib/Text";
 import React from "react";
 
 const validate = (value: string) => {

@@ -1,10 +1,10 @@
-import { Variant } from "lib/types";
+import { Variant } from "../types";
 import "./popover-button.scss";
 import React from "react";
-import { XIcon } from "lib/icons/XIcon";
-import { Icon } from "lib/icons/icons-types";
-import { classNames } from "lib/utils/classNames";
-import { CircleIcon } from "lib/icons/CircleIcon";
+import { XIcon } from "../icons/XIcon";
+import { Icon } from "../icons/icons-types";
+import { classNames } from "../utils/classNames";
+import { CircleIcon } from "../icons/CircleIcon";
 
 const BLOCK = "lib_popover-button";
 

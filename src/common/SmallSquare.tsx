@@ -1,4 +1,4 @@
-import { Square, SquareProps } from "common/Square/Square";
+import { Square, SquareProps } from "./Square/Square";
 
 const BLOCK = "common_small-square";
 

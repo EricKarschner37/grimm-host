@@ -1,5 +1,5 @@
-import { isArray } from "lib/utils/typeguard/is-array";
-import { isNumber, isString } from "lib/utils/typeguard/is-primitive";
+import { isArray } from "./is-array";
+import { isNumber, isString } from "./is-primitive";
 
 export const isTypedArray = <T>(
   obj: any[],

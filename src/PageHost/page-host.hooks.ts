@@ -1,16 +1,16 @@
-import { makeRevealMessage } from "PageBoard/page-board.utils";
+import { makeRevealMessage } from "../PageBoard/page-board.utils";
 import {
   ChoosePlayerMessage,
   CloseBuzzersMessage,
   OpenBuzzersMessage,
   ReportPlayerCorrectMessage,
   ForceContinueMessage,
-} from "PageHost/page-host.types";
-import { deserializeMessage } from "Play/play.hooks";
-import { GameState } from "common/types/game-state.types";
-import { getGameStateFromStateMessage } from "common/types/get-game-state";
-import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
-import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
+} from "./page-host.types";
+import { deserializeMessage } from "../Play/play.hooks";
+import { GameState } from "../common/types/game-state.types";
+import { getGameStateFromStateMessage } from "../common/types/get-game-state";
+import { SocketWrapper, useSocket } from "../lib/utils/hooks/use-socket";
+import { useStableCallback } from "../lib/utils/hooks/use-stable-callback";
 import React from "react";
 
 export interface UseHostSocketProps {

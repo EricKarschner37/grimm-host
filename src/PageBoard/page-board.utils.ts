@@ -2,7 +2,7 @@ import {
   RemoveMessage,
   RevealMessage,
   SetPlayerBalanceMessage,
-} from "PageBoard/page-board.types";
+} from "./page-board.types";
 
 export const makeRevealMessage = (row: number, col: number): string => {
   const message: RevealMessage = {

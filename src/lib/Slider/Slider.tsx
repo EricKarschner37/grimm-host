@@ -1,12 +1,12 @@
 import React from "react";
 import "./slider.scss";
-import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
-import { clamp } from "lib/utils/clamp";
-import { Text } from "lib/Text";
-import { Flex } from "lib/Flex";
-import { Input } from "lib/Input/Input";
-import { classNames } from "lib/utils/classNames";
-import { Action } from "lib/Action/Action";
+import { useStableCallback } from "../utils/hooks/use-stable-callback";
+import { clamp } from "../utils/clamp";
+import { Text } from "../Text";
+import { Flex } from "../Flex";
+import { Input } from "../Input/Input";
+import { classNames } from "../utils/classNames";
+import { Action } from "../Action/Action";
 
 const BLOCK = "lib__slider";
 

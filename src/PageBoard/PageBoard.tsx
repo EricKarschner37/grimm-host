@@ -1,19 +1,19 @@
-import { Board, BoardProps } from "PageBoard/Board/Board";
-import { PlayerList } from "PageBoard/PlayerList";
-import { useBoardSocket } from "PageBoard/page-board.hooks";
-import { GameState } from "common/types/game-state.types";
-import { Button } from "lib/Button/Button";
-import { Flex } from "lib/Flex";
-import { FlexItem } from "lib/FlexItem/FlexItem";
-import { Panel } from "lib/Panel/Panel";
-import { Suspender } from "lib/Suspender";
-import { RightArrowIcon } from "lib/icons/RightArrowIcon";
+import { Board, BoardProps } from "./Board/Board";
+import { PlayerList } from "./PlayerList";
+import { useBoardSocket } from "./page-board.hooks";
+import { GameState } from "../common/types/game-state.types";
+import { Button } from "../lib/Button/Button";
+import { Flex } from "../lib/Flex";
+import { FlexItem } from "../lib/FlexItem/FlexItem";
+import { Panel } from "../lib/Panel/Panel";
+import { Suspender } from "../lib/Suspender";
+import { RightArrowIcon } from "../lib/icons/RightArrowIcon";
 import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import "./page-board.scss";
 import QRCode from "react-qr-code";
-import { Text } from "lib/Text";
+import { Text } from "../lib/Text";
 
 const PageBoardRedirector = () => {
   const { lobbyId } = useParams<"lobbyId">();

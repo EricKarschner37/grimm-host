@@ -1,6 +1,6 @@
-import { GameListing } from "Home/PlayTab/GameListing/GameListing";
-import { EmptyState } from "lib/EmptyState/EmptyState";
-import { useGetGames } from "lib/utils/hooks/use-get-games";
+import { GameListing } from "./GameListing/GameListing";
+import { EmptyState } from "../../lib/EmptyState/EmptyState";
+import { useGetGames } from "../../lib/utils/hooks/use-get-games";
 
 export const PlayTab = () => {
   const { data: gamesResults } = useGetGames();

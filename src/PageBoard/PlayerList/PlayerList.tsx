@@ -1,15 +1,15 @@
-import { BoardSocketWrapper } from "PageBoard/page-board.hooks";
-import { Text } from "lib/Text";
-import { GameState, Player } from "common/types/game-state.types";
+import { BoardSocketWrapper } from "../page-board.hooks";
+import { Text } from "../../lib/Text";
+import { GameState, Player } from "../../common/types/game-state.types";
 import "./player-list.scss";
 import React from "react";
-import { PopoverButton } from "lib/PopoverButton/PopoverButton";
-import { PencilIcon } from "lib/icons/PencilIcon";
-import { XIcon } from "lib/icons/XIcon";
-import { Input } from "lib/Input/Input";
-import { Flex } from "lib/Flex";
-import { classNames } from "lib/utils/classNames";
-import { Button } from "lib/Button/Button";
+import { PopoverButton } from "../../lib/PopoverButton/PopoverButton";
+import { PencilIcon } from "../../lib/icons/PencilIcon";
+import { XIcon } from "../../lib/icons/XIcon";
+import { Input } from "../../lib/Input/Input";
+import { Flex } from "../../lib/Flex";
+import { classNames } from "../../lib/utils/classNames";
+import { Button } from "../../lib/Button/Button";
 
 const BLOCK = "page-board_player-list";
 

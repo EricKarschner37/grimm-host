@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./panel.scss";
-import { LayoutProps, MarginProps, PaddingProps } from "lib/types";
-import { classNames, getHelperClassNames } from "lib/utils/classNames";
+import { LayoutProps, MarginProps, PaddingProps } from "../types";
+import { classNames, getHelperClassNames } from "../utils/classNames";
 
 const BLOCK = "lib_panel";
 

@@ -5,17 +5,17 @@ ReportRespondedMessage,
   PlayerResponseMessage,
   RegisterMessage,
   WagerMessage,
-} from "Play/play.types";
-import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
-import { GameState } from "common/types/game-state.types";
+} from "./play.types";
+import { SocketWrapper, useSocket } from "../lib/utils/hooks/use-socket";
+import { GameState } from "../common/types/game-state.types";
 import React from "react";
-import { getGameStateFromStateMessage } from "common/types/get-game-state";
+import { getGameStateFromStateMessage } from "../common/types/get-game-state";
 import {
   isCategoriesMessageShape,
   isStateMessageShape,
-} from "common/types/game-state.type-guards";
-import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
-import { makeRevealMessage } from "PageBoard/page-board.utils";
+} from "../common/types/game-state.type-guards";
+import { useStableCallback } from "../lib/utils/hooks/use-stable-callback";
+import { makeRevealMessage } from "../PageBoard/page-board.utils";
 
 export interface UsePlayerSocketProps {
   username: string;

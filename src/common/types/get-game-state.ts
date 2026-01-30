@@ -1,4 +1,4 @@
-import { GameState, StateMessage } from "common/types/game-state.types";
+import { GameState, StateMessage } from "./game-state.types";
 import { match } from "ts-pattern";
 
 export const getGameStateFromStateMessage = (

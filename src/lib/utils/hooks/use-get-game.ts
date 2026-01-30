@@ -1,7 +1,7 @@
-import { useQuery } from "lib/utils/hooks/use-query";
-import { isStringArray } from "lib/utils/typeguard/is-typed-array";
+import { useQuery } from "./use-query";
+import { isStringArray } from "../typeguard/is-typed-array";
 import { isString } from "../typeguard/is-primitive";
-import { GameMode } from "common/types/game-state.types";
+import { GameMode } from "../../../common/types/game-state.types";
 
 export interface GetGameResult {
   players: string[];

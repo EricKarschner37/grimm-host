@@ -1,6 +1,6 @@
-import { MarginProps, PaddingProps } from "lib/types";
+import { MarginProps, PaddingProps } from "../types";
 import "./flex.scss";
-import { classNames, getHelperClassNames } from "lib/utils/classNames";
+import { classNames, getHelperClassNames } from "../utils/classNames";
 
 type FlexDirection = "row" | "column" | "row-reverse" | "column-reverse";
 type FlexWrap = "nowrap" | "wrap" | "wrap-reverse";

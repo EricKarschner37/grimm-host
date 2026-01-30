@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Flex } from 'lib/Flex';
+import { Flex } from '../Flex';
 
 import './header.scss';
 

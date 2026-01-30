@@ -1,13 +1,13 @@
-import { Button } from "lib/Button/Button";
-import { Text } from "lib/Text";
-import { Input } from "lib/Input/Input";
-import { Spacing } from "lib/Spacing/Spacing";
+import { Button } from "../lib/Button/Button";
+import { Text } from "../lib/Text";
+import { Input } from "../lib/Input/Input";
+import { Spacing } from "../lib/Spacing/Spacing";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Flex } from "lib/Flex";
+import { Flex } from "../lib/Flex";
 import './board-tab.scss';
-import { ToggleSwitch } from "lib/ToggleSwitch/ToggleSwitch";
-import { GameMode } from "common/types/game-state.types";
+import { ToggleSwitch } from "../lib/ToggleSwitch/ToggleSwitch";
+import { GameMode } from "../common/types/game-state.types";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 

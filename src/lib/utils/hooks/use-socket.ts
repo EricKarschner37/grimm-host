@@ -1,6 +1,6 @@
-import { useInterval } from "lib/utils/hooks/use-interval";
-import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
-import { useTimeout } from "lib/utils/hooks/use-timeout";
+import { useInterval } from "./use-interval";
+import { useStableCallback } from "./use-stable-callback";
+import { useTimeout } from "./use-timeout";
 import React from "react";
 import { match } from "ts-pattern";
 

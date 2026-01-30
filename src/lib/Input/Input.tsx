@@ -1,6 +1,6 @@
 import React from "react";
 import "./input.scss";
-import { classNames } from "lib/utils/classNames";
+import { classNames } from "../utils/classNames";
 
 export interface InputProps {
   hint?: string;

@@ -1,8 +1,8 @@
-import { useQuery } from "lib/utils/hooks/use-query";
-import { isArray } from "lib/utils/typeguard/is-array";
-import { isObject } from "lib/utils/typeguard/is-object";
-import { isNumber, isString } from "lib/utils/typeguard/is-primitive";
-import { makeIsShape } from "lib/utils/typeguard/is-shape";
+import { useQuery } from "./use-query";
+import { isArray } from "../typeguard/is-array";
+import { isObject } from "../typeguard/is-object";
+import { isNumber, isString } from "../typeguard/is-primitive";
+import { makeIsShape } from "../typeguard/is-shape";
 
 export interface GetGamesResult {
   lobby_id: string;

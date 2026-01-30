@@ -1,14 +1,14 @@
-import { Square } from "common/Square/Square";
+import { Square } from "../Square/Square";
 import "./client-categories.scss";
 import React from "react";
-import { Flex } from "lib/Flex";
-import { Cost } from "PageBoard/Cost/Cost";
-import { PlayerSocketWrapper } from "Play/play.hooks";
-import { HostSocketWrapper } from "PageHost/page-host.hooks";
-import { isClueShown } from "lib/utils/is-clue-shown";
-import { BareDefaultRound } from "common/types/game-state.types";
-import { LeftArrowIcon } from "lib/icons/LeftArrowIcon";
-import { FlexItem } from "lib/FlexItem/FlexItem";
+import { Flex } from "../../lib/Flex";
+import { Cost } from "../../PageBoard/Cost/Cost";
+import { PlayerSocketWrapper } from "../../Play/play.hooks";
+import { HostSocketWrapper } from "../../PageHost/page-host.hooks";
+import { isClueShown } from "../../lib/utils/is-clue-shown";
+import { BareDefaultRound } from "../types/game-state.types";
+import { LeftArrowIcon } from "../../lib/icons/LeftArrowIcon";
+import { FlexItem } from "../../lib/FlexItem/FlexItem";
 
 export interface ClientCategoriesProps {
   bareRound: BareDefaultRound;

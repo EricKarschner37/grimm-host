@@ -1,7 +1,7 @@
-import { classNames } from "lib/utils/classNames";
+import { classNames } from "../utils/classNames";
 import "./tab-list.scss";
-import { Flex } from "lib/Flex";
-import { TabListUnderlist } from "lib/TabList/TabListUnderline";
+import { Flex } from "../Flex";
+import { TabListUnderlist } from "./TabListUnderline";
 
 export interface TabListProps<T extends string> {
   selectedTab?: T;

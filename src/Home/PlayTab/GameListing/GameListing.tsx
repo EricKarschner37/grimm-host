@@ -1,5 +1,5 @@
-import { Button } from "lib/Button/Button";
-import { getFormattedTimeSince } from "lib/utils/get-formatted-time-since";
+import { Button } from "../../../lib/Button/Button";
+import { getFormattedTimeSince } from "../../../lib/utils/get-formatted-time-since";
 import { NavLink } from "react-router-dom";
 
 interface GameOption {

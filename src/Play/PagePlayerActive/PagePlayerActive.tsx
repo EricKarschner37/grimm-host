@@ -1,18 +1,18 @@
-import { Text } from "lib/Text/Text";
-import { Header } from "lib/Header/Header";
-import { PlayerSocketWrapper, usePlayerSocket } from "Play/play.hooks";
-import { GameMode, GameState } from "common/types/game-state.types";
-import { SocketStateIndicator } from 'common/SocketStateIndicator';
-import { Button } from "lib/Button/Button";
-import { Suspender } from "lib/Suspender";
+import { Text } from "../../lib/Text/Text";
+import { Header } from "../../lib/Header/Header";
+import { PlayerSocketWrapper, usePlayerSocket } from "../play.hooks";
+import { GameMode, GameState } from "../../common/types/game-state.types";
+import { SocketStateIndicator } from '../../common/SocketStateIndicator';
+import { Button } from "../../lib/Button/Button";
+import { Suspender } from "../../lib/Suspender";
 import React, { ReactNode } from "react";
 import "./page-player-active.scss";
-import { Flex } from "lib/Flex";
-import { ClientCategories } from "common/ClientCategories/ClientCategories";
-import { Wager } from "Play/PagePlayerActive/Wager";
-import { Response } from "Play/PagePlayerActive/Response";
-import { Clue } from "PageBoard/Clue/Clue";
-import { FlexItem } from "lib/FlexItem/FlexItem";
+import { Flex } from "../../lib/Flex";
+import { ClientCategories } from "../../common/ClientCategories/ClientCategories";
+import { Wager } from "./Wager";
+import { Response } from "./Response";
+import { Clue } from "../../PageBoard/Clue/Clue";
+import { FlexItem } from "../../lib/FlexItem/FlexItem";
 
 export interface PagePlayerActiveProps {
   username: string;

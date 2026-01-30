@@ -1,4 +1,4 @@
-import { RightArrowIcon } from "lib/icons/RightArrowIcon";
+import { RightArrowIcon } from "./RightArrowIcon";
 
 // TODO - Type this correctly so components (like Button)
 // can accept only icons

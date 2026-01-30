@@ -3,17 +3,17 @@ import {
   RESPONSE_MESSAGE_STRING,
   NEXT_ROUND_MESSAGE_STRING,
   RANDOMIZE_ACTIVE_PLAYER_MESSAGE_STRING,
-} from "PageBoard/page-board.constants";
+} from "./page-board.constants";
 import {
   makeRemoveMessage,
   makeRevealMessage,
   makeSetPlayerBalanceMessage,
-} from "PageBoard/page-board.utils";
-import { isStateMessageShape } from "common/types/game-state.type-guards";
-import { GameState, StateMessage } from "common/types/game-state.types";
-import { getGameStateFromStateMessage } from "common/types/get-game-state";
-import { SocketWrapper, useSocket } from "lib/utils/hooks/use-socket";
-import { useStableCallback } from "lib/utils/hooks/use-stable-callback";
+} from "./page-board.utils";
+import { isStateMessageShape } from "../common/types/game-state.type-guards";
+import { GameState, StateMessage } from "../common/types/game-state.types";
+import { getGameStateFromStateMessage } from "../common/types/get-game-state";
+import { SocketWrapper, useSocket } from "../lib/utils/hooks/use-socket";
+import { useStableCallback } from "../lib/utils/hooks/use-stable-callback";
 import React from "react";
 
 export interface UseBoardSocketArgs {

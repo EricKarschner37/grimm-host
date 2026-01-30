@@ -1,14 +1,14 @@
-import { Category } from "PageBoard/Category/Category";
-import { BoardSocketWrapper } from "PageBoard/page-board.hooks";
-import { GameState } from "common/types/game-state.types";
+import { Category } from "../Category/Category";
+import { BoardSocketWrapper } from "../page-board.hooks";
+import { GameState } from "../../common/types/game-state.types";
 
 import "./board.scss";
 import { match } from "ts-pattern";
 import React from "react";
-import { Square } from "common/Square/Square";
-import { Cost } from "PageBoard/Cost/Cost";
-import { Clue } from "PageBoard/Clue/Clue";
-import { isClueShown } from "lib/utils/is-clue-shown";
+import { Square } from "../../common/Square/Square";
+import { Cost } from "../Cost/Cost";
+import { Clue } from "../Clue/Clue";
+import { isClueShown } from "../../lib/utils/is-clue-shown";
 
 export interface BoardProps {
   gameState: GameState;

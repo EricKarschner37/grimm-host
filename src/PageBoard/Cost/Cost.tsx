@@ -1,5 +1,5 @@
-import { Square } from "common/Square/Square";
-import { classNames } from "lib/utils/classNames";
+import { Square } from "../../common/Square/Square";
+import { classNames } from "../../lib/utils/classNames";
 import "./cost.scss";
 
 export interface CostProps {

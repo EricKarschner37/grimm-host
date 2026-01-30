@@ -1,8 +1,8 @@
-import { HostSocketWrapper } from "PageHost/page-host.hooks";
-import { GameState, Player } from "common/types/game-state.types";
-import { Button } from "lib/Button/Button";
-import { Select } from "lib/Select/Select";
-import { Text } from "lib/Text/Text";
+import { HostSocketWrapper } from "./page-host.hooks";
+import { GameState, Player } from "../common/types/game-state.types";
+import { Button } from "../lib/Button/Button";
+import { Select } from "../lib/Select/Select";
+import { Text } from "../lib/Text/Text";
 import React from "react";
 
 export const PlayerSelector = ({

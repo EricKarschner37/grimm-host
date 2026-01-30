@@ -1,4 +1,4 @@
-import { StateMessage } from "common/types/game-state.types";
+import { StateMessage } from "../common/types/game-state.types";
 
 export interface CategoryMessage {
   message: "categories";

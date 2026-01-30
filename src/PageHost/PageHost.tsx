@@ -1,18 +1,18 @@
-import { PlayerSelector } from "PageHost/PlayerSelector";
-import { SocketStateIndicator } from 'common/SocketStateIndicator';
-import { Header } from "lib/Header/Header";
-import { HostSocketWrapper, useHostSocket } from "PageHost/page-host.hooks";
-import { ClientCategories } from "common/ClientCategories/ClientCategories";
-import { GameState } from "common/types/game-state.types";
-import { Button } from "lib/Button/Button";
-import { Flex } from "lib/Flex";
-import { Suspender } from "lib/Suspender";
-import { ToggleSwitch } from "lib/ToggleSwitch/ToggleSwitch";
-import { Text } from "lib/Text";
+import { PlayerSelector } from "./PlayerSelector";
+import { SocketStateIndicator } from '../common/SocketStateIndicator';
+import { Header } from "../lib/Header/Header";
+import { HostSocketWrapper, useHostSocket } from "./page-host.hooks";
+import { ClientCategories } from "../common/ClientCategories/ClientCategories";
+import { GameState } from "../common/types/game-state.types";
+import { Button } from "../lib/Button/Button";
+import { Flex } from "../lib/Flex";
+import { Suspender } from "../lib/Suspender";
+import { ToggleSwitch } from "../lib/ToggleSwitch/ToggleSwitch";
+import { Text } from "../lib/Text";
 import React, { ReactNode } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { Clue } from "PageBoard/Clue/Clue";
-import { FlexItem } from "lib/FlexItem/FlexItem";
+import { Clue } from "../PageBoard/Clue/Clue";
+import { FlexItem } from "../lib/FlexItem/FlexItem";
 import "./page-host.scss";
 
 export interface PageHostContentProps {

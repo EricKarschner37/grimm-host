@@ -1,9 +1,9 @@
-import { PagePlayerActive } from "Play/PagePlayerActive/PagePlayerActive";
-import { UsernameEntry } from "Play/UsernameEntry";
-import { Flex } from "lib/Flex";
-import { FlexItem } from "lib/FlexItem/FlexItem";
-import { Text } from "lib/Text";
-import { useGetGame } from "lib/utils/hooks/use-get-game";
+import { PagePlayerActive } from "./PagePlayerActive/PagePlayerActive";
+import { UsernameEntry } from "./UsernameEntry";
+import { Flex } from "../lib/Flex";
+import { FlexItem } from "../lib/FlexItem/FlexItem";
+import { Text } from "../lib/Text";
+import { useGetGame } from "../lib/utils/hooks/use-get-game";
 import { Navigate, useParams, useSearchParams } from "react-router-dom";
 
 export const Play = () => {

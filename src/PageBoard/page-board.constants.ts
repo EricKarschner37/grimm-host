@@ -3,7 +3,7 @@ import {
   NextRoundMessage,
   RandomizeActivePlayerMessage,
   ResponseMessage,
-} from "PageBoard/page-board.types";
+} from "./page-board.types";
 
 export const RESPONSE_MESSAGE: ResponseMessage = {
   request: "response",
