@@ -3,8 +3,8 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn
 COPY . ./
-ENV REACT_APP_API_URL="https://jeopardy.karschner.studio"
-ENV REACT_APP_WS_URL="wss://jeopardy.karschner.studio"
+ENV VITE_API_URL="https://jeopardy.karschner.studio"
+ENV VITE_WS_URL="wss://jeopardy.karschner.studio"
 RUN yarn build
 
 FROM nginxinc/nginx-unprivileged:latest

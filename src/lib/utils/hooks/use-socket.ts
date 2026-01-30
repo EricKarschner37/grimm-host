@@ -4,7 +4,7 @@ import { useTimeout } from "./use-timeout";
 import React from "react";
 import { match } from "ts-pattern";
 
-const DEBUG = process.env.REACT_APP_DEBUG === "true";
+const DEBUG = import.meta.env.VITE_DEBUG === "true";
 
 export interface UseSocketProps {
   path: string;
@@ -28,7 +28,7 @@ export interface SocketWrapper {
   retry: () => void;
 }
 
-const BASE_URL = process.env.REACT_APP_WS_URL;
+const BASE_URL = import.meta.env.VITE_WS_URL;
 
 const BASE_RETRY_TIMEOUT = 1000;
 

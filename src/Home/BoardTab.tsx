@@ -9,7 +9,7 @@ import './board-tab.scss';
 import { ToggleSwitch } from "../lib/ToggleSwitch/ToggleSwitch";
 import { GameMode } from "../common/types/game-state.types";
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const BLOCK = 'home__board-tab';
 
